@@ -1,0 +1,1944 @@
+{
+  "id": "sample",
+  "name": "Northwind Cloud 뉴스레터",
+  "version": 1,
+  "canvasWidth": 640,
+  "_comment": "글자수 한도 도출 규칙: 한 줄 글자수 ≈ 사용가능 폭(px) ÷ 글자크기(px). 한글=1, 영문/숫자/공백=0.55 가중치(perLine은 가중 단위). maxChars는 AI에게 주는 단순 문자수 상한.",
+  "sections": {
+    "hero": {
+      "label": "히어로샷",
+      "required": true,
+      "desc": "제목·리드·핵심 배지 — 항상 맨 위.",
+      "slots": {
+        "title": {
+          "type": "multiline",
+          "maxChars": 57,
+          "maxLines": 2,
+          "perLine": 19,
+          "required": true,
+          "default": "행사 제목을 입력하세요",
+          "desc": "행사/프로모션 제목. 줄바꿈(\\n)으로 2줄 구성 가능 — 의미 단위로 끊을 것. 이모지 1개까지 허용."
+        },
+        "paragraphs": {
+          "type": "list",
+          "minItems": 1,
+          "maxItems": 2,
+          "itemMaxChars": 90,
+          "itemMaxLines": 2,
+          "itemPerLine": 32,
+          "required": true,
+          "default": [
+            "행사 소개를 입력하세요"
+          ],
+          "desc": "부제/리드 문단 1~2개. 각 문단 최대 2줄, 줄바꿈은 의미 단위."
+        },
+        "badges": {
+          "type": "list",
+          "minItems": 1,
+          "maxItems": 2,
+          "itemMaxChars": 28,
+          "itemMaxLines": 1,
+          "itemPerLine": 18,
+          "required": true,
+          "default": [
+            "핵심 안내"
+          ],
+          "desc": "핵심 조건/마감 배지 1~2개 (날짜·기한·조건 등 짧은 사실)."
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "basic",
+            "centered",
+            "dark",
+            "block"
+          ],
+          "default": "basic",
+          "optionLabels": {
+            "basic": "기본형",
+            "centered": "가운데 정렬",
+            "dark": "다크 배너",
+            "block": "컬러 블록"
+          },
+          "desc": "기본형 / 가운데 정렬 / 다크 배너 / 컬러 블록"
+        },
+        "sourceTitle": {
+          "type": "multiline",
+          "required": false,
+          "maxChars": 500,
+          "maxLines": 20
+        },
+        "letter": {
+          "type": "multiline",
+          "required": false,
+          "maxChars": 600,
+          "maxLines": 12,
+          "default": "",
+          "desc": "확인한 원문의 오프닝 레터. 서버가 원문 그대로 채우므로 AI는 비워 둔다."
+        }
+      }
+    },
+    "values": {
+      "label": "리스트",
+      "required": false,
+      "defaultOn": true,
+      "desc": "받는 사람이 얻는 가치 2~3개를 카드로. 프로모션·모집에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Value offering",
+          "desc": "영문 섹션 라벨 2~3단어 (예: Value offering, Why join, What you get). 첫 글자만 대문자."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "참여하면 얻는 가치",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "cards": {
+          "type": "cards",
+          "minItems": 2,
+          "maxItems": 4,
+          "required": true,
+          "fields": {
+            "title": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "perLine": 26,
+              "desc": "카드 제목 — 받는 사람이 얻는 가치 한 문장"
+            },
+            "sub": {
+              "maxChars": 100,
+              "maxLines": 2,
+              "perLine": 36,
+              "desc": "카드 부연 — 구체적 숫자/사실 위주, 최대 2줄"
+            }
+          },
+          "default": [
+            {
+              "title": "핵심 가치",
+              "sub": "구체적인 내용을 입력하세요"
+            },
+            {
+              "title": "다음 가치",
+              "sub": "구체적인 내용을 입력하세요"
+            }
+          ],
+          "desc": "가치 카드 2~4개. 번호 배지는 자동."
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "cards",
+            "cols3",
+            "numbers",
+            "tiles",
+            "diagram"
+          ],
+          "default": "cards",
+          "optionLabels": {
+            "cards": "세로 나열",
+            "cols3": "3열 카드",
+            "numbers": "큰 숫자",
+            "tiles": "틴트 타일 3열",
+            "diagram": "가운데 핵심어 도식"
+          },
+          "desc": "세로 나열 / 3열 카드 / 큰 숫자 / 틴트 타일 3열 / 가운데 핵심어 도식"
+        },
+        "centerLabel": {
+          "type": "text",
+          "required": false,
+          "maxChars": 36,
+          "perLine": 38,
+          "default": "핵심 가치"
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      }
+    },
+    "qualify": {
+      "label": "표",
+      "required": false,
+      "defaultOn": true,
+      "desc": "가격표·조건표·일정표 등 표 데이터가 있을 때만.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Details",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "상세 정보",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "condition": {
+          "type": "text",
+          "maxChars": 56,
+          "maxLines": 1,
+          "perLine": 38,
+          "required": false,
+          "default": "",
+          "desc": "표 위 조건 한 줄 (없으면 생략)."
+        },
+        "groups": {
+          "type": "groups",
+          "minItems": 1,
+          "maxItems": 3,
+          "required": true,
+          "fields": {
+            "brand": {
+              "enum": [
+                "nimbus",
+                "stratus",
+                "cirrus",
+                "none"
+              ],
+              "desc": "그룹 브랜드 — 워드마크 색·아이콘 결정. 해당 없으면 none"
+            },
+            "name": {
+              "maxChars": 20,
+              "maxLines": 1,
+              "perLine": 14,
+              "desc": "그룹 이름 (제품명 등)"
+            },
+            "headers": {
+              "minItems": 2,
+              "maxItems": 5,
+              "itemMaxChars": 14,
+              "desc": "표 머리글 3~5개"
+            },
+            "highlightCol": {
+              "type": "int",
+              "desc": "그라데이션 강조 열 번호(0부터), 없으면 -1"
+            },
+            "rows": {
+              "minItems": 1,
+              "maxItems": 8,
+              "desc": "표 행 — 각 행은 headers와 같은 개수의 셀 배열, 셀 최대 24자"
+            },
+            "cellMaxChars": 24
+          },
+          "default": [
+            {
+              "brand": "none",
+              "name": "정보",
+              "headers": [
+                "항목",
+                "내용"
+              ],
+              "highlightCol": -1,
+              "rows": [
+                [
+                  "항목",
+                  "내용"
+                ]
+              ]
+            }
+          ],
+          "desc": "정보 표 그룹 1~3개 (가격표·일정표·조건표 등). 입력에 표로 만들 만한 데이터가 없으면 이 섹션을 끈다."
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      }
+    },
+    "about": {
+      "label": "사진과 글",
+      "required": false,
+      "defaultOn": true,
+      "desc": "사진 한 장 + 핵심 사실 불릿 + 구성 필. 실물(음식·굿즈·공간)이 있는 행사에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "About",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 12,
+          "maxLines": 1,
+          "perLine": 9,
+          "required": true,
+          "default": "소개",
+          "desc": "섹션 제목 — 아주 짧게 (좁은 열이라 9자 이내)."
+        },
+        "bullets": {
+          "type": "list",
+          "minItems": 2,
+          "maxItems": 6,
+          "itemMaxChars": 36,
+          "itemMaxLines": 1,
+          "itemPerLine": 24,
+          "required": true,
+          "default": [
+            "소개 내용을 입력하세요",
+            "추가 내용을 입력하세요"
+          ],
+          "desc": "핵심 사실 불릿 2~6개 (언제/어디서/무엇을)."
+        },
+        "photoAlt": {
+          "type": "text",
+          "maxChars": 60,
+          "maxLines": 1,
+          "perLine": 40,
+          "required": true,
+          "default": "소개 이미지",
+          "desc": "사진 대체텍스트 (이메일 이미지 차단 대비)."
+        },
+        "pills": {
+          "type": "pills",
+          "minItems": 2,
+          "maxItems": 6,
+          "required": true,
+          "fields": {
+            "main": {
+              "maxChars": 16,
+              "maxLines": 1,
+              "desc": "필 대표 단어"
+            },
+            "sub": {
+              "maxChars": 30,
+              "maxLines": 1,
+              "optional": true,
+              "desc": "회색 보조 설명 (없으면 생략)"
+            }
+          },
+          "default": [
+            {
+              "main": "주요 내용",
+              "sub": ""
+            },
+            {
+              "main": "추가 내용",
+              "sub": ""
+            }
+          ],
+          "desc": "구성 요소 필 2~6개 (2개씩 줄바꿈)."
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "photo",
+            "text"
+          ],
+          "default": "photo",
+          "optionLabels": {
+            "photo": "사진 위, 글 아래",
+            "text": "로고 옆에 글"
+          },
+          "desc": "사진 위, 글 아래 / 로고 옆에 글"
+        },
+        "body": {
+          "type": "multiline",
+          "required": false,
+          "maxChars": 240,
+          "perLine": 45,
+          "default": "",
+          "maxLines": 6
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      }
+    },
+    "agenda": {
+      "label": "시간표",
+      "required": false,
+      "defaultOn": false,
+      "desc": "같은 날 행사의 세션 목록 — 시간순으로 위→아래 (시간·제목·발표자). 초대장에 적합. 여러 날 일정은 timeline을 쓴다.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Agenda",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "행사 일정",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 8,
+          "required": true,
+          "fields": {
+            "title": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "perLine": 27,
+              "desc": "세션 제목 (시간을 앞에 붙여도 좋음, 예: 14:00 오프닝)"
+            },
+            "speaker": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "perLine": 30,
+              "optional": true,
+              "desc": "발표자 · 소속 (없으면 생략)"
+            },
+            "desc": {
+              "maxChars": 100,
+              "maxLines": 2,
+              "perLine": 34,
+              "desc": "세션 한 줄 소개",
+              "optional": true
+            },
+            "time": {
+              "type": "text",
+              "required": false,
+              "maxChars": 80,
+              "default": "",
+              "optional": true
+            }
+          },
+          "default": [
+            {
+              "title": "첫 세션",
+              "desc": "",
+              "speaker": ""
+            },
+            {
+              "title": "다음 세션",
+              "desc": "",
+              "speaker": ""
+            }
+          ],
+          "desc": "세션 2~8개. 번호 배지는 자동."
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "list",
+            "grouped"
+          ],
+          "default": "list",
+          "optionLabels": {
+            "list": "세션 목록",
+            "grouped": "오전·오후 묶음과 동시 세션"
+          },
+          "desc": "세션 목록 / 오전·오후 묶음과 동시 세션"
+        },
+        "style": {
+          "type": "choice",
+          "label": "일정 디자인",
+          "enum": [
+            "rail",
+            "table",
+            "timeline",
+            "classic"
+          ],
+          "default": "rail",
+          "optionLabels": {
+            "rail": "왼콽 선 타임라인",
+            "table": "번호 표",
+            "timeline": "가운데 선, 좌우 카드",
+            "classic": "번호 카드"
+          },
+          "desc": "왼콽 선 타임라인 / 번호 표 / 가운데 선, 좌우 카드 / 번호 카드"
+        },
+        "blocks": {
+          "type": "agendaBlocks",
+          "required": false,
+          "default": []
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      }
+    },
+    "steps": {
+      "label": "단계 카드",
+      "required": false,
+      "defaultOn": false,
+      "desc": "신청 방법·참여 절차 등 순서 있는 안내 (번호 자동).",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "How it works",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "진행 순서",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 6,
+          "required": true,
+          "fields": {
+            "title": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "perLine": 28,
+              "desc": "단계 제목 — 동사로 짧게"
+            },
+            "sub": {
+              "maxChars": 76,
+              "maxLines": 2,
+              "perLine": 34,
+              "optional": true,
+              "desc": "단계 부연 (없으면 생략)"
+            }
+          },
+          "default": [
+            {
+              "title": "요구사항",
+              "sub": "목표를 정리하세요"
+            },
+            {
+              "title": "설계",
+              "sub": "접근 방식을 정하세요"
+            },
+            {
+              "title": "실행",
+              "sub": "할 일을 정하세요"
+            }
+          ],
+          "desc": "단계 2~6개. 번호는 자동."
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "list",
+            "process",
+            "compact"
+          ],
+          "default": "list",
+          "optionLabels": {
+            "list": "세로로 나열",
+            "process": "가로 3칸 (3단계일 때)",
+            "compact": "번호와 제목 한 줄"
+          },
+          "desc": "세로로 나열 / 가로 3칸 (3단계일 때) / 번호와 제목 한 줄"
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      },
+      "deprecated": true
+    },
+    "timeline": {
+      "label": "가로 타임라인",
+      "required": false,
+      "defaultOn": false,
+      "desc": "행사 일정을 타임라인으로. 같은 날 시간순이면 세로(위→아래), 여러 날·주차 등 일별이면 가로(좌→우) — layout으로 지정.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Timeline",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "기간별 일정",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "layout": {
+          "type": "choice",
+          "enum": [
+            "vertical",
+            "horizontal"
+          ],
+          "required": true,
+          "default": "horizontal",
+          "label": "방향",
+          "optionLabels": {
+            "vertical": "위에서 아래로",
+            "horizontal": "왼쪽에서 오른쪽으로"
+          },
+          "desc": "일정의 성격이 결정: 항목이 같은 날의 시각 흐름(14:00, 15:30…)이면 vertical(위→아래), 일·주 단위(Day 1, 1주차, 날짜별)면 horizontal(좌→우)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 5,
+          "required": true,
+          "fields": {
+            "label": {
+              "maxChars": 12,
+              "maxLines": 1,
+              "desc": "시점 라벨 (1주차, 10/15, Day 1 등)"
+            },
+            "title": {
+              "maxChars": 24,
+              "maxLines": 1,
+              "perLine": 20,
+              "desc": "그 시점에 하는 것 한 줄"
+            },
+            "desc": {
+              "maxChars": 80,
+              "maxLines": 3,
+              "perLine": 24,
+              "optional": true,
+              "desc": "부연 설명 (없으면 생략, 가로형은 짧게)"
+            }
+          },
+          "default": [
+            {
+              "label": "1주차",
+              "title": "온보딩 & 환경 설정",
+              "desc": "계정 세팅과 기본 개념을 익힙니다."
+            },
+            {
+              "label": "2주차",
+              "title": "실습 프로젝트",
+              "desc": "실제 시나리오로 직접 만들어 봅니다."
+            },
+            {
+              "label": "3주차",
+              "title": "데모데이 & 수료",
+              "desc": "결과물을 발표하고 배지를 받습니다."
+            }
+          ],
+          "desc": "시점 2~5개 (가로형은 2~4개 권장)."
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      }
+    },
+    "stats": {
+      "label": "숫자 강조 카드",
+      "required": false,
+      "defaultOn": false,
+      "desc": "성과·사례를 큰 숫자로 보여주는 카드 (숫자 + 설명 + 스토리). 실적 공유·사례 소개에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Highlights",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "숫자와 그래프",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 6,
+          "required": true,
+          "fields": {
+            "num": {
+              "maxChars": 12,
+              "maxLines": 1,
+              "desc": "큰 숫자 (단위·화살표 포함, 예: 31%↑, 1억+, $50)"
+            },
+            "cap": {
+              "maxChars": 40,
+              "maxLines": 3,
+              "desc": "숫자 아래 짧은 설명"
+            },
+            "tag": {
+              "maxChars": 12,
+              "maxLines": 1,
+              "optional": true,
+              "desc": "작은 태그 (대상·분야, 없으면 생략)"
+            },
+            "title": {
+              "maxChars": 34,
+              "maxLines": 1,
+              "perLine": 23,
+              "desc": "스토리 제목 한 줄",
+              "optional": true
+            },
+            "story": {
+              "maxChars": 200,
+              "maxLines": 5,
+              "desc": "숫자의 맥락 설명, 최대 3줄",
+              "optional": true
+            },
+            "graphic": {
+              "type": "graphic",
+              "optional": true,
+              "desc": "브리핑에 실제 수치가 있을 때만. percent는 0~100의 value. bars/beforeAfter는 label/value 2개와 공통 unit. 숫자가 없는 경우 생략."
+            }
+          },
+          "default": [
+            {
+              "num": "수치 입력",
+              "cap": "지표 이름",
+              "title": "지표 설명",
+              "story": ""
+            },
+            {
+              "num": "수치 입력",
+              "cap": "지표 이름",
+              "title": "지표 설명",
+              "story": ""
+            }
+          ],
+          "desc": "스탯 카드 2~6개."
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      },
+      "deprecated": true
+    },
+    "quotes": {
+      "label": "인용 박스",
+      "required": false,
+      "defaultOn": false,
+      "desc": "고객·참가자 한마디 인용. 재참가 유도·사례 공유에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Testimonials",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "후기와 한마디",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 1,
+          "maxItems": 5,
+          "required": true,
+          "fields": {
+            "quote": {
+              "maxChars": 300,
+              "maxLines": 6,
+              "desc": "인용문 — 따옴표 포함해 자연스럽게, 최대 3줄"
+            },
+            "name": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "desc": "말한 사람 이름"
+            },
+            "role": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "optional": true,
+              "desc": "소속·직함 (없으면 생략)"
+            }
+          },
+          "default": [
+            {
+              "quote": "인용문을 입력하세요",
+              "name": "이름",
+              "role": ""
+            }
+          ],
+          "desc": "인용 1~5개."
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "list",
+            "featured"
+          ],
+          "default": "list",
+          "optionLabels": {
+            "list": "세로 나열",
+            "featured": "큰 인용"
+          },
+          "desc": "세로 나열 / 큰 인용"
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "on",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      }
+    },
+    "infobar": {
+      "label": "정보 띠",
+      "required": false,
+      "defaultOn": false,
+      "desc": "일시/장소/대상을 한 줄 검정 스트립으로 강조. 초대장에 적합.",
+      "slots": {
+        "cells": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 3,
+          "required": true,
+          "fields": {
+            "label": {
+              "maxChars": 10,
+              "maxLines": 1,
+              "desc": "항목 라벨 (일시/장소/대상 등)"
+            },
+            "value": {
+              "maxChars": 20,
+              "maxLines": 1,
+              "perLine": 13,
+              "desc": "핵심 값 — 짧게"
+            },
+            "sub": {
+              "maxChars": 20,
+              "maxLines": 1,
+              "perLine": 13,
+              "optional": true,
+              "desc": "보조 줄 (없으면 생략)"
+            }
+          },
+          "default": [
+            {
+              "label": "일시",
+              "value": "일시 입력"
+            },
+            {
+              "label": "장소",
+              "value": "장소 입력"
+            }
+          ],
+          "desc": "정보 칸 2~3개 (일시/장소/대상)."
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "strip",
+            "floating",
+            "details"
+          ],
+          "default": "strip",
+          "optionLabels": {
+            "strip": "한 줄 띠",
+            "floating": "떠 있는 흰 카드",
+            "details": "항목별 여러 줄"
+          },
+          "desc": "한 줄 띠 / 떠 있는 흰 카드 / 항목별 여러 줄"
+        },
+        "event": {
+          "type": "eventDetails",
+          "required": false
+        }
+      }
+    },
+    "productCards": {
+      "label": "로고 카드",
+      "required": false,
+      "defaultOn": false,
+      "desc": "제품을 카드로 소개 (로고·대상·질문형 헤드라인·해시태그). 제품 홍보에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Products",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "제품 소개",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 1,
+          "maxItems": 4,
+          "required": true,
+          "fields": {
+            "brand": {
+              "enum": [
+                "nimbus",
+                "stratus",
+                "cirrus",
+                "none"
+              ],
+              "desc": "제품 브랜드 — 워드마크 색·아이콘 결정"
+            },
+            "name": {
+              "maxChars": 20,
+              "maxLines": 1,
+              "perLine": 14,
+              "desc": "제품 이름 (공식 표기)"
+            },
+            "audience": {
+              "maxChars": 10,
+              "maxLines": 1,
+              "desc": "대상 한 단어 (개발자/비개발자/인프라 등)"
+            },
+            "question": {
+              "maxChars": 64,
+              "maxLines": 2,
+              "perLine": 29,
+              "desc": "질문형 헤드라인 (…찾는다면? …싶다면?)"
+            },
+            "desc": {
+              "maxChars": 76,
+              "maxLines": 2,
+              "perLine": 34,
+              "desc": "제품 한 줄 설명"
+            },
+            "hashtags": {
+              "type": "list",
+              "minItems": 2,
+              "maxItems": 3,
+              "itemMaxChars": 14,
+              "desc": "#해시태그 2~3개 (# 포함)"
+            },
+            "href": {
+              "type": "text",
+              "required": false,
+              "maxChars": 1200,
+              "default": "",
+              "format": "url",
+              "optional": true
+            }
+          },
+          "default": [
+            {
+              "brand": "none",
+              "name": "제품 이름",
+              "audience": "대상",
+              "question": "핵심 메시지를 입력하세요",
+              "desc": "소개 내용을 입력하세요",
+              "hashtags": [
+                "주요 특징",
+                "추가 특징"
+              ],
+              "href": ""
+            }
+          ],
+          "desc": "제품 카드 1~4개."
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "vertical",
+            "horizontal"
+          ],
+          "default": "vertical",
+          "optionLabels": {
+            "vertical": "카드 2열",
+            "horizontal": "가로로 긴 카드"
+          },
+          "desc": "카드 2열 / 가로로 긴 카드"
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      },
+      "deprecated": true
+    },
+    "bignumber": {
+      "label": "큰 숫자",
+      "required": false,
+      "defaultOn": false,
+      "desc": "큰 숫자 하나로 시선을 잡는 리드 블록 (시장 규모·마감 인원 등). 히어로 바로 뒤에 적합.",
+      "slots": {
+        "big": {
+          "type": "text",
+          "maxChars": 14,
+          "maxLines": 1,
+          "required": true,
+          "default": "수치 입력",
+          "desc": "큰 그라데이션 숫자 (단위 포함)."
+        },
+        "line1": {
+          "type": "text",
+          "maxChars": 30,
+          "maxLines": 1,
+          "perLine": 21,
+          "required": true,
+          "default": "내용을 입력하세요",
+          "desc": "숫자가 뜻하는 것 한 줄."
+        },
+        "line2": {
+          "type": "text",
+          "maxChars": 30,
+          "maxLines": 1,
+          "perLine": 21,
+          "required": false,
+          "default": "내용을 입력하세요",
+          "desc": "이어지는 메시지 한 줄 (없으면 생략)."
+        },
+        "source": {
+          "type": "text",
+          "maxChars": 40,
+          "maxLines": 1,
+          "required": false,
+          "default": "내용을 입력하세요",
+          "desc": "출처 표기 (없으면 생략)."
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "on",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      },
+      "deprecated": true
+    },
+    "footer": {
+      "label": "마무리",
+      "required": true,
+      "desc": "마무리 메시지·연락처·행동 버튼 — 항상 맨 아래.",
+      "slots": {
+        "headline": {
+          "type": "multiline",
+          "maxChars": 100,
+          "maxLines": 3,
+          "required": true,
+          "default": "다음 단계를 안내하세요",
+          "desc": "마무리 헤드라인 — 행사의 의미를 담은 문장, 최대 2줄."
+        },
+        "leftNote": {
+          "type": "multiline",
+          "maxChars": 300,
+          "maxLines": 6,
+          "required": false,
+          "default": "",
+          "desc": "다음 행동 요청 (좁은 열, 줄당 16자)."
+        },
+        "bullets": {
+          "type": "list",
+          "minItems": 1,
+          "maxItems": 4,
+          "itemMaxChars": 36,
+          "itemMaxLines": 1,
+          "itemPerLine": 22,
+          "required": true,
+          "default": [
+            "다음 단계를 입력하세요"
+          ],
+          "desc": "구체적 대상/방법 불릿 1~4개."
+        },
+        "contactLines": {
+          "type": "multiline",
+          "maxChars": 90,
+          "maxLines": 3,
+          "perLine": 30,
+          "required": false,
+          "default": "",
+          "desc": "담당자 연락처 1~3줄 (이름/소속/전화). 이메일은 contactEmail에 따로."
+        },
+        "contactEmail": {
+          "type": "text",
+          "maxChars": 40,
+          "maxLines": 1,
+          "perLine": 40,
+          "required": false,
+          "default": "",
+          "desc": "담당자 이메일 (mailto 링크가 됨, 없으면 생략)."
+        },
+        "cta": {
+          "type": "text",
+          "maxChars": 36,
+          "maxLines": 1,
+          "perLine": 24,
+          "required": true,
+          "default": "자세히 보기",
+          "desc": "검정 필 버튼 문구 — 행동 촉구 한 문장."
+        },
+        "notes": {
+          "type": "list",
+          "required": false,
+          "minItems": 0,
+          "maxItems": 40,
+          "itemMaxChars": 2200,
+          "itemMaxLines": 50,
+          "default": []
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "contact",
+            "dark",
+            "block",
+            "table",
+            "sentence",
+            "cta"
+          ],
+          "default": "contact",
+          "optionLabels": {
+            "contact": "문의처 카드",
+            "dark": "다크 배너",
+            "block": "컬러 블록",
+            "table": "항목 표",
+            "sentence": "문장형",
+            "cta": "버튼과 이미지"
+          },
+          "desc": "문의처 카드 / 다크 배너 / 컬러 블록 / 항목 표 / 문장형 / 버튼과 이미지"
+        },
+        "rows": {
+          "type": "items",
+          "required": false,
+          "minItems": 0,
+          "maxItems": 4,
+          "fields": {
+            "label": {
+              "maxChars": 8,
+              "maxLines": 1,
+              "perLine": 8,
+              "desc": "라벨 (신청 방법·기재 사항·정원·마감 등)"
+            },
+            "value": {
+              "maxChars": 44,
+              "maxLines": 2,
+              "perLine": 28,
+              "desc": "값 — 브리핑에 있는 사실만"
+            }
+          },
+          "default": [],
+          "desc": "footer.layout이 table일 때만 2~4행. 다른 형태면 빈 배열."
+        },
+        "body": {
+          "type": "multiline",
+          "required": false,
+          "maxChars": 180,
+          "perLine": 45,
+          "default": "다음 단계를 안내하세요",
+          "maxLines": 6,
+          "desc": "footer.layout이 sentence일 때만 — 신청 방법·마감을 한 문단(2~3문장)으로. 다른 형태면 빈 문자열."
+        },
+        "href": {
+          "type": "text",
+          "required": false,
+          "maxChars": 1200,
+          "default": "",
+          "format": "url"
+        },
+        "image": {
+          "type": "text",
+          "required": false,
+          "maxChars": 1200,
+          "default": "",
+          "format": "image"
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "on",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      }
+    },
+    "customerStories": {
+      "label": "사진 카드 2열",
+      "desc": "브리핑에 실제 사례의 본문이 있을 때만. 성과·고객 이름·수치를 만들어내지 않는다.",
+      "required": false,
+      "defaultOn": false,
+      "since": 2,
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "required": false,
+          "maxChars": 100,
+          "perLine": 38,
+          "default": "Customer stories"
+        },
+        "title": {
+          "type": "text",
+          "required": true,
+          "maxChars": 100,
+          "perLine": 38,
+          "default": "고객 사례"
+        },
+        "items": {
+          "type": "items",
+          "minItems": 1,
+          "maxItems": 6,
+          "fields": {
+            "title": {
+              "type": "text",
+              "required": true,
+              "maxChars": 60,
+              "default": "사례 제목"
+            },
+            "body": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 2000,
+              "default": "사례 내용을 입력하세요",
+              "maxLines": 50
+            },
+            "href": {
+              "type": "text",
+              "required": false,
+              "maxChars": 1200,
+              "default": "",
+              "format": "url",
+              "optional": true
+            },
+            "image": {
+              "type": "text",
+              "required": false,
+              "maxChars": 1200,
+              "default": "",
+              "format": "image",
+              "optional": true
+            }
+          },
+          "default": [
+            {
+              "title": "사례 제목",
+              "body": "사례 내용을 입력하세요",
+              "href": "",
+              "image": ""
+            }
+          ]
+        },
+        "intro": {
+          "type": "multiline",
+          "required": false,
+          "maxChars": 400,
+          "maxLines": 8,
+          "default": ""
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      },
+      "deprecated": true
+    },
+    "logoGrid": {
+      "label": "로고 격자",
+      "desc": "브리핑에서 명시한 제품·기관만. 로고 이미지가 없는 경우 이름을 표시한다.",
+      "required": false,
+      "defaultOn": false,
+      "since": 2,
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "required": false,
+          "maxChars": 100,
+          "perLine": 38,
+          "default": "Partners"
+        },
+        "title": {
+          "type": "text",
+          "required": true,
+          "maxChars": 100,
+          "perLine": 38,
+          "default": "로고 모음"
+        },
+        "items": {
+          "type": "items",
+          "minItems": 1,
+          "maxItems": 8,
+          "fields": {
+            "name": {
+              "type": "text",
+              "required": true,
+              "maxChars": 40,
+              "perLine": 38,
+              "default": "이름"
+            },
+            "image": {
+              "type": "text",
+              "required": false,
+              "maxChars": 1200,
+              "default": "",
+              "format": "image",
+              "optional": true
+            },
+            "href": {
+              "type": "text",
+              "required": false,
+              "maxChars": 1200,
+              "default": "",
+              "format": "url",
+              "optional": true
+            }
+          },
+          "default": [
+            {
+              "name": "이름",
+              "image": "",
+              "href": ""
+            }
+          ]
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      },
+      "deprecated": true
+    },
+    "article": {
+      "label": "기사 본문",
+      "desc": "확인한 원고의 본문 단락만. 서버가 확인 데이터로 채우므로 AI는 선택하지 않는다.",
+      "required": false,
+      "defaultOn": false,
+      "since": 2,
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "required": false,
+          "maxChars": 100,
+          "perLine": 38,
+          "default": "Feature"
+        },
+        "title": {
+          "type": "multiline",
+          "required": true,
+          "maxChars": 100,
+          "default": "주요 소식",
+          "maxLines": 2
+        },
+        "lead": {
+          "type": "multiline",
+          "required": false,
+          "maxChars": 800,
+          "maxLines": 16,
+          "default": "리드 문단을 입력하세요"
+        },
+        "items": {
+          "type": "items",
+          "minItems": 0,
+          "maxItems": 6,
+          "required": false,
+          "fields": {
+            "heading": {
+              "type": "text",
+              "required": true,
+              "maxChars": 80,
+              "default": "소제목"
+            },
+            "body": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 800,
+              "maxLines": 16,
+              "default": "",
+              "optional": true
+            }
+          },
+          "default": [
+            {
+              "heading": "소제목",
+              "body": "본문을 입력하세요"
+            }
+          ]
+        },
+        "href": {
+          "type": "text",
+          "required": false,
+          "maxChars": 1200,
+          "default": "",
+          "format": "url"
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      }
+    },
+    "programs": {
+      "label": "프로그램 카드",
+      "desc": "확인한 개별 행사·프로그램만. 서버가 확인 데이터로 채우므로 AI는 선택하지 않는다.",
+      "required": false,
+      "defaultOn": false,
+      "since": 2,
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "required": false,
+          "maxChars": 100,
+          "perLine": 38,
+          "default": "Programs"
+        },
+        "title": {
+          "type": "text",
+          "required": true,
+          "maxChars": 100,
+          "perLine": 38,
+          "default": "프로그램 안내"
+        },
+        "intro": {
+          "type": "multiline",
+          "required": false,
+          "maxChars": 400,
+          "maxLines": 8,
+          "default": ""
+        },
+        "items": {
+          "type": "items",
+          "minItems": 1,
+          "maxItems": 4,
+          "required": true,
+          "fields": {
+            "title": {
+              "type": "text",
+              "required": true,
+              "maxChars": 100,
+              "default": "프로그램 이름"
+            },
+            "oneLiner": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 200,
+              "maxLines": 3,
+              "default": "",
+              "optional": true
+            },
+            "body": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 800,
+              "maxLines": 16,
+              "default": "",
+              "optional": true
+            },
+            "date": {
+              "type": "text",
+              "required": false,
+              "maxChars": 100,
+              "default": "",
+              "optional": true
+            },
+            "time": {
+              "type": "text",
+              "required": false,
+              "maxChars": 100,
+              "default": "",
+              "optional": true
+            },
+            "location": {
+              "type": "text",
+              "required": false,
+              "maxChars": 100,
+              "default": "",
+              "optional": true
+            },
+            "audience": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 300,
+              "maxLines": 5,
+              "default": "",
+              "optional": true
+            },
+            "format": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 300,
+              "maxLines": 5,
+              "default": "",
+              "optional": true
+            },
+            "cta": {
+              "type": "text",
+              "required": false,
+              "maxChars": 40,
+              "default": "",
+              "optional": true
+            },
+            "href": {
+              "type": "text",
+              "required": false,
+              "maxChars": 1200,
+              "default": "",
+              "format": "url",
+              "optional": true
+            }
+          },
+          "default": [
+            {
+              "title": "프로그램 이름",
+              "oneLiner": "한 줄 소개를 입력하세요",
+              "body": "소개 내용을 입력하세요",
+              "date": "날짜 입력",
+              "time": "",
+              "location": "장소 입력",
+              "audience": "대상 입력",
+              "format": "",
+              "cta": "신청하기",
+              "href": ""
+            }
+          ]
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "on",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      },
+      "deprecated": true
+    },
+    "card": {
+      "label": "카드",
+      "desc": "같은 형식의 항목 묶음(사례·단계·수치·제품·프로그램·로고). 열 수는 layout(col1/col2/col3), 로고 목록은 logo, 헤드라인 수치 하나는 banner, 순서 있는 절차는 numbers=on. 묶음이 둘 이상이면 card:2, card:3 키로 추가한다. 사례·수치·링크·이미지는 브리핑에 있는 것만 쓴다.",
+      "required": false,
+      "defaultOn": false,
+      "since": 2,
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "required": false,
+          "maxChars": 100,
+          "perLine": 38,
+          "default": "Highlights"
+        },
+        "title": {
+          "type": "text",
+          "required": true,
+          "maxChars": 100,
+          "perLine": 38,
+          "default": "주요 내용"
+        },
+        "layout": {
+          "type": "choice",
+          "label": "형태",
+          "enum": [
+            "col1",
+            "col2",
+            "col3",
+            "logo",
+            "banner"
+          ],
+          "default": "col1",
+          "optionLabels": {
+            "col1": "1열",
+            "col2": "2열",
+            "col3": "3열",
+            "logo": "로고 격자 (3열, 작은 이미지)",
+            "banner": "큰 숫자 배너 (1열, 테두리 없음)"
+          },
+          "desc": "1열 / 2열 / 3열 / 로고 격자 (3열, 작은 이미지) / 큰 숫자 배너 (1열, 테두리 없음)"
+        },
+        "numbers": {
+          "type": "choice",
+          "label": "번호",
+          "enum": [
+            "off",
+            "on"
+          ],
+          "default": "off",
+          "optionLabels": {
+            "off": "없음",
+            "on": "1, 2, 3 번호"
+          },
+          "desc": "순서가 있는 단계·절차면 on, 아니면 off."
+        },
+        "intro": {
+          "type": "multiline",
+          "required": false,
+          "maxChars": 400,
+          "maxLines": 8,
+          "default": ""
+        },
+        "items": {
+          "type": "items",
+          "minItems": 1,
+          "maxItems": 8,
+          "required": true,
+          "fields": {
+            "title": {
+              "type": "text",
+              "required": true,
+              "maxChars": 60,
+              "default": "카드 제목"
+            },
+            "kicker": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 200,
+              "maxLines": 3,
+              "default": "",
+              "optional": true,
+              "desc": "한 줄 소개·질문형 헤드라인. 없으면 생략."
+            },
+            "body": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 2000,
+              "maxLines": 50,
+              "default": "",
+              "optional": true,
+              "desc": "카드 설명 2~3문장. 없으면 생략."
+            },
+            "image": {
+              "type": "text",
+              "required": false,
+              "maxChars": 1200,
+              "default": "",
+              "format": "image",
+              "optional": true
+            },
+            "brand": {
+              "enum": [
+                "nimbus",
+                "stratus",
+                "cirrus",
+                "none"
+              ],
+              "optional": true,
+              "desc": "카드 제목이 Nimbus·Stratus·Cirrus 제품 이름일 때만 nimbus/stratus/cirrus. 그 외 none."
+            },
+            "tag": {
+              "type": "text",
+              "required": false,
+              "maxChars": 24,
+              "default": "",
+              "optional": true,
+              "desc": "작은 라벨(대상·분야). 없으면 생략."
+            },
+            "num": {
+              "type": "text",
+              "required": false,
+              "maxChars": 12,
+              "default": "",
+              "optional": true,
+              "desc": "큰 숫자(단위·화살표 포함, 예: 31%↑). 브리핑에 있는 수치 토큰만."
+            },
+            "graphic": {
+              "type": "graphic",
+              "optional": true,
+              "desc": "브리핑에 실제 수치가 있을 때만. percent는 0~100의 value. bars/beforeAfter는 label/value 2개와 공통 unit. 숫자가 없는 경우 생략."
+            },
+            "date": {
+              "type": "text",
+              "required": false,
+              "maxChars": 100,
+              "default": "",
+              "optional": true,
+              "desc": "일시. 원문 표현 그대로."
+            },
+            "time": {
+              "type": "text",
+              "required": false,
+              "maxChars": 100,
+              "default": "",
+              "optional": true,
+              "desc": "시간. 원문 표현 그대로."
+            },
+            "location": {
+              "type": "text",
+              "required": false,
+              "maxChars": 100,
+              "default": "",
+              "optional": true,
+              "desc": "장소. 원문 표현 그대로."
+            },
+            "audience": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 300,
+              "maxLines": 5,
+              "default": "",
+              "optional": true,
+              "desc": "대상. 원문 표현 그대로."
+            },
+            "format": {
+              "type": "multiline",
+              "required": false,
+              "maxChars": 300,
+              "maxLines": 5,
+              "default": "",
+              "optional": true,
+              "desc": "구성·형식. 원문 표현 그대로."
+            },
+            "hashtags": {
+              "type": "list",
+              "minItems": 0,
+              "maxItems": 3,
+              "itemMaxChars": 14,
+              "optional": true,
+              "desc": "#해시태그 최대 3개. 없으면 빈 배열."
+            },
+            "source": {
+              "type": "text",
+              "required": false,
+              "maxChars": 60,
+              "default": "",
+              "optional": true,
+              "desc": "출처 표기(예: 출처: 금융위원회 보도자료). 없으면 생략."
+            },
+            "href": {
+              "type": "text",
+              "required": false,
+              "maxChars": 1200,
+              "default": "",
+              "format": "url",
+              "optional": true
+            },
+            "cta": {
+              "type": "text",
+              "required": false,
+              "maxChars": 24,
+              "default": "",
+              "optional": true,
+              "desc": "버튼 문구. href가 있을 때만. 비우면 '자세히 보기'."
+            }
+          },
+          "default": [
+            {
+              "title": "첫 번째 카드",
+              "kicker": "",
+              "body": "카드 내용을 입력하세요",
+              "image": "",
+              "brand": "none",
+              "tag": "",
+              "num": "",
+              "date": "",
+              "time": "",
+              "location": "",
+              "audience": "",
+              "format": "",
+              "hashtags": [],
+              "source": "",
+              "href": "",
+              "cta": ""
+            },
+            {
+              "title": "두 번째 카드",
+              "kicker": "",
+              "body": "카드 내용을 입력하세요",
+              "image": "",
+              "brand": "none",
+              "tag": "",
+              "num": "",
+              "date": "",
+              "time": "",
+              "location": "",
+              "audience": "",
+              "format": "",
+              "hashtags": [],
+              "source": "",
+              "href": "",
+              "cta": ""
+            },
+            {
+              "title": "세 번째 카드",
+              "kicker": "",
+              "body": "카드 내용을 입력하세요",
+              "image": "",
+              "brand": "none",
+              "tag": "",
+              "num": "",
+              "date": "",
+              "time": "",
+              "location": "",
+              "audience": "",
+              "format": "",
+              "hashtags": [],
+              "source": "",
+              "href": "",
+              "cta": ""
+            }
+          ]
+        },
+        "background": {
+          "type": "toggle",
+          "label": "배경 그라디언트",
+          "default": "off",
+          "desc": "섹션 배경. on이면 테마 틴트 그라디언트, off면 흰색. 강조할 섹션 1~2개에만 on, 연속한 두 섹션을 모두 on으로 하지 않는다."
+        }
+      },
+      "multi": true
+    }
+  },
+  "meta": {
+    "docTitle": {
+      "maxChars": 60,
+      "required": true,
+      "default": "새 플라이어",
+      "desc": "HTML 문서 제목 (이메일 제목 겸용)."
+    },
+    "themeId": {
+      "type": "choice",
+      "enum": [
+        "general",
+        "ocean",
+        "sunset",
+        "plum"
+      ],
+      "default": "general"
+    },
+    "designVersion": {
+      "type": "number",
+      "enum": [
+        2
+      ],
+      "default": 2
+    }
+  },
+  "brands": {
+    "nimbus": {
+      "icon": "nimbus-icon",
+      "wordmarkCss": "background:linear-gradient(90deg,#3B82F6,#1F5FBF); background-color:#1F5FBF; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#1F5FBF;"
+    },
+    "stratus": {
+      "icon": "stratus-icon",
+      "wordmarkCss": "background:linear-gradient(90deg,#14B8A6,#0F766E); background-color:#0F766E; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#0F766E;"
+    },
+    "cirrus": {
+      "icon": null,
+      "wordmarkCss": "background:linear-gradient(90deg,#F97316,#C2410C); background-color:#C2410C; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#C2410C;"
+    },
+    "none": {
+      "icon": null,
+      "wordmarkCss": "color:#141920;"
+    }
+  },
+  "imageSlots": {
+    "heroBg": {
+      "label": "배경 그라데이션",
+      "default": "hero-general",
+      "presets": {
+        "hero-general": "assets/hero-general.jpg",
+        "hero-ocean": "assets/hero-ocean.jpg",
+        "hero-sunset": "assets/hero-sunset.jpg",
+        "hero-plum": "assets/hero-plum.jpg"
+      }
+    },
+    "logo": {
+      "label": "로고",
+      "default": "logo",
+      "presets": {
+        "logo": "assets/logo.png"
+      }
+    },
+    "photo": {
+      "label": "본문 사진",
+      "default": "",
+      "presets": {
+        "photo": "assets/photo.jpg"
+      }
+    },
+    "logoWhite": {
+      "label": "로고(흰색)",
+      "default": "logo-white",
+      "presets": {
+        "logo-white": "assets/logo-white.png"
+      }
+    },
+    "heroDeco": {
+      "label": "배너 장식",
+      "default": "deco-general",
+      "presets": {
+        "deco-general": "assets/hero-deco-general.png",
+        "deco-ocean": "assets/hero-deco-ocean.png",
+        "deco-sunset": "assets/hero-deco-sunset.png",
+        "deco-plum": "assets/hero-deco-plum.png"
+      }
+    }
+  },
+  "iconPresets": {
+    "nimbus-icon": "assets/nimbus-icon.png",
+    "stratus-icon": "assets/stratus-icon.png",
+    "icon-check": "assets/icon-check.png",
+    "icon-settings": "assets/icon-settings.png",
+    "icon-people": "assets/icon-people.png",
+    "icon-chart": "assets/icon-chart.png"
+  },
+  "combos": [
+    "모듈은 브리핑에 맞는 것만 3~6개 (hero·footer 포함) — 많이 넣을수록 좋은 게 아니다",
+    "정보 표(qualify)는 표로 만들 데이터가 있을 때만, 사진 소개(about)는 실물이 있는 행사일 때만",
+    "표·스탯처럼 정보 밀도가 높은 모듈을 연달아 붙이지 않는다 (사이에 가볍고 여백 있는 모듈)",
+    "infobar(일시·장소)는 히어로 바로 뒤가 자연스럽다, bignumber도 히어로 뒤 초반부에",
+    "성격이 겹치는 모듈은 하나만 (values vs card, agenda vs card)",
+    "행사 일정이 같은 날 시간순이면 agenda 또는 timeline(vertical, 위→아래), 여러 날·주차·일별이면 timeline(horizontal, 좌→우)",
+    "사례·단계·특징처럼 같은 형식의 항목은 card(열 수는 layout, 순서면 numbers=on). 명시된 제품·기관 로고 목록은 card layout=logo, 헤드라인 수치 하나는 card layout=banner. 없는 자료는 만들지 않는다.",
+    "기사형 원고의 본문 단락은 article. 개별 행사·프로그램, 수치 카드, 고객 사례는 확인 데이터에서 서버가 card 묶음(card, card:2, card:3)으로 조립하므로 AI는 고르지 않는다."
+  ],
+  "designVersion": 2
+}

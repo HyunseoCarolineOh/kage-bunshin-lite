@@ -1,0 +1,26 @@
+node_modules/
+dist/
+cdk.out/
+.env
+deployment-outputs*.json
+.local-handler.mjs
+scripts/e2e-out/
+*.log
+_workspace/
+scripts/edit-rate-out/
+scripts/fixtures/
+
+# --- private theme overlay: the owner's brand theme stays on disk but is never committed ---
+templates/jjangdm/
+lambda/api/templates/
+templates/_active.mjs
+*.local.*
+docs/
+scripts/build-hero-assets.mjs
+scripts/fetch-main-briefs.mjs
+scripts/gen-hero-art.mjs
+scripts/hero-mockups.mjs
+scripts/layout-variants.mjs
+scripts/make-from-brief.mjs
+scripts/shot.mjs
+scripts/theme-variants.mjs

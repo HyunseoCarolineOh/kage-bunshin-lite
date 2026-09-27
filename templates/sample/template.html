@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-slot="meta.docTitle">Northwind Cloud 파트너 성장 세미나</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f3f5f8;">
+
+<!-- eDM Poster : 640px, table-based, inline CSS / design source of truth: this file (Northwind Cloud sample theme)
+     슬롯 규약: data-slot(글) · data-slot-img(이미지 src) · data-slot-bg(배경이미지 url) · data-section(섹션 tr)
+     data-repeat(배열 반복 프로토타입) · data-spacer(반복 사이 간격 셀) · data-bullets(불릿 목록)
+     data-pill-rows(2개씩 줄바꿈 필 목록) · data-num(자동 번호) · data-brand-icon/-wordmark(브랜드 표기)
+     조립기(assembler.js)가 내보내기 때 모든 data-* 속성을 제거한다. 디자인(스타일)은 이 파일이 단일 소스 — AI는 절대 손대지 않는다. -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f3f5f8;">
+<tr><td align="center" style="padding:24px 12px;">
+
+<table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px; max-width:640px; background-color:#ffffff; border-radius:20px; overflow:hidden; font-family:'Pretendard','Inter','Segoe UI','Malgun Gothic','맑은 고딕',sans-serif;">
+
+<!-- ===== 1. HERO : gradient bg image, black type, logo right, black pill badges ===== -->
+<tr data-section="hero">
+<td style="background-color:#eef4fd; background-image:url('{HERO_BG}'); background-size:cover; background-position:center top; padding:44px 44px 46px 44px;" data-slot-bg="images.heroBg">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td valign="top">
+      <div style="font-size:24px; line-height:1.35; font-weight:800; color:#141920; letter-spacing:-0.5px;" data-slot="hero.title">Northwind Cloud
+파트너 성장 세미나 🎉</div>
+    </td>
+    <td width="90" valign="top" align="right" style="padding-top:4px;"><img src="{LOGO}" width="66" alt="Northwind Cloud" style="display:block;" data-slot-img="images.logo"/></td>
+  </tr>
+  </table>
+  <div style="padding-top:4px;">
+    <div style="font-size:17px; line-height:1.55; color:#141920; padding-top:12px;" data-repeat="hero.paragraphs" data-slot=".">고객사와 파트너가 함께 배우는
+반나절 실습 세미나</div>
+  </div>
+  <!-- black pill badges -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:22px;">
+  <tr data-repeat-row="hero.badges">
+    <td width="10" style="font-size:0; line-height:0;" data-spacer>&nbsp;</td>
+    <td style="background-color:#000000; border-radius:100px; padding:9px 16px;" data-repeat=".">
+      <span style="font-size:13.5px; font-weight:700; color:#ffffff;" data-slot=".">2026년 10월 15일 (수)</span>
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+<!-- ===== 2. VALUE OFFERING : white pill cards with gradient number badges ===== -->
+<tr data-section="values">
+<td style="padding:42px 40px 10px 40px;">
+  <div align="center" style="font-size:12px; font-weight:600; letter-spacing:1.4px; color:#141920; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot="values.eyebrow">Value offering</div>
+  <div align="center" style="font-size:24px; font-weight:700; color:#141920; letter-spacing:-0.4px; padding-top:10px; padding-bottom:26px;" data-slot="values.title">파트너에게 드리는 가치</div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr data-repeat="values.cards" data-gap="14px">
+    <td style="padding-bottom:14px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff; border:1px solid #e9edf3; border-radius:28px; box-shadow:0 4px 20px rgba(0,0,0,0.10);">
+    <tr><td align="center" style="padding:20px 28px 20px 28px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td align="center" valign="middle" width="28" height="28" style="background:linear-gradient(180deg,#1F5FBF,#3B82F6); background-color:#1F5FBF; border-radius:50%; font-size:15px; font-weight:700; color:#ffffff; line-height:28px;" data-num>1</td>
+      </tr></table>
+      <div style="font-size:18px; font-weight:700; color:#141920; padding-top:10px;" data-slot=".title">신규 프로젝트 착수를 직접 지원</div>
+      <div style="font-size:14px; font-weight:600; color:#8a8f98; padding-top:6px; line-height:1.5;" data-slot=".sub">세미나 당일 1:1 기술 상담 예약 가능</div>
+    </td></tr>
+    </table>
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+<!-- ===== 3. HOW TO QUALIFY : 정보 표 (pink gradient bg) ===== -->
+<tr data-section="qualify">
+<td style="background-color:#f4f8fe; background-image:url('{HERO_BG}'); background-size:cover; background-position:center; padding:44px 40px 44px 40px;" data-slot-bg="images.heroBg">
+  <div align="center" style="font-size:12px; font-weight:600; letter-spacing:1.4px; color:#141920; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot="qualify.eyebrow">How to qualify</div>
+  <div align="center" style="font-size:24px; font-weight:700; color:#141920; letter-spacing:-0.4px; padding-top:10px;" data-slot="qualify.title">추천 구성</div>
+  <div align="center" style="font-size:14.5px; font-weight:600; color:#8a8f98; padding-top:12px; padding-bottom:26px;" data-slot="qualify.condition" data-optional="qualify.condition">조건 | 파트너 프로그램 가입 고객사</div>
+
+  <div data-repeat="qualify.groups" data-first-style="margin-top:0;" style="margin-top:28px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:10px;">
+    <tr>
+      <td style="padding-right:9px;" data-brand-icon-cell><img src="{BRAND_ICON}" width="26" height="26" alt="" style="display:block;" data-brand-icon/></td>
+      <td style="font-size:20px; font-weight:800; background:linear-gradient(90deg,#3B82F6,#1F5FBF); background-color:#1F5FBF; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#1F5FBF;" data-brand-wordmark data-base-style="font-size:20px; font-weight:800;" data-slot=".name">Nimbus</td>
+    </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate; border-spacing:0; font-size:13px; color:#141920; border:2px solid rgba(0,0,0,0.04); border-radius:10px; overflow:hidden;"
+      data-highlight-css="font-weight:800; background:linear-gradient(180deg,#1F5FBF,#3B82F6); background-color:#1F5FBF; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#1F5FBF;"
+      data-first-row-bg="#f8fbff">
+    <tr style="background-color:#dfe9f9;">
+      <th align="left" style="padding:11px 14px; font-size:13px; font-weight:700; color:#141920;" data-repeat=".headers" data-slot=".">플랜</th>
+    </tr>
+    <tr data-repeat=".rows">
+      <td style="padding:11px 14px; border-top:2px solid rgba(0,0,0,0.04);" data-repeat="." data-slot=".">Nimbus</td>
+    </tr>
+    </table>
+  </div>
+</td>
+</tr>
+
+<!-- ===== 4. ABOUT : 소개 + 사진 + 필 (white bg) ===== -->
+<tr data-section="about">
+<td style="background-color:#ffffff; padding:44px 40px 40px 40px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td valign="top" width="38%">
+      <div style="font-size:12px; font-weight:600; letter-spacing:1.4px; color:#141920; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot="about.eyebrow">About the event</div>
+      <div style="font-size:24px; font-weight:700; color:#141920; letter-spacing:-0.4px; padding-top:10px;" data-slot="about.title">행사 소개</div>
+    </td>
+    <td valign="top">
+      <div style="font-size:14px; color:#141920; line-height:1.9;" data-bullets="about.bullets">
+        <span style="color:#1F5FBF;">●</span>&nbsp; 10월 15일, 서울 강남 세미나룸<br/>
+        <span style="color:#1F5FBF;">●</span>&nbsp; 주최 측이 장소와 일정을 조율<br/>
+        <span style="color:#1F5FBF;">●</span>&nbsp; 참가 인원수만큼 실습 자리 제공
+      </div>
+    </td>
+  </tr>
+  </table>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:24px;">
+  <tr><td>
+    <img src="{PHOTO}" width="560" alt="행사 사진" style="display:block; width:100%; max-width:560px; height:auto; border-radius:10px; box-shadow:0 4px 40px rgba(0,0,0,0.2);" data-slot-img="images.photo" data-slot-alt="about.photoAlt"/>
+  </td></tr>
+  </table>
+
+  <!-- pills : 2 per row -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:18px;">
+  <tr>
+    <td align="center" data-pill-rows="about.pills">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" data-pill-row data-row-gap="10px">
+      <tr>
+        <td width="10" style="font-size:0; line-height:0;" data-spacer>&nbsp;</td>
+        <td style="background-color:#ffffff; border-radius:100px; padding:11px 22px; box-shadow:0 4px 20px rgba(0,0,0,0.10);" data-pill>
+          <span style="font-size:14px; color:#000000;" data-slot=".main">샌드위치 &amp; 랩</span><span data-pill-sub>&nbsp; <span style="font-size:14px; color:#8a8f98;" data-slot=".sub">입문, 심화</span></span>
+        </td>
+      </tr>
+      </table>
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+<!-- ===== 6. AGENDA : 세션 일정 카드 (white bg) ===== -->
+<tr data-section="agenda">
+<td style="background-color:#ffffff; padding:42px 40px 42px 40px;">
+  <div align="center" style="font-size:12px; font-weight:600; letter-spacing:1.4px; color:#141920; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot="agenda.eyebrow">Agenda</div>
+  <div align="center" style="font-size:24px; font-weight:700; color:#141920; letter-spacing:-0.4px; padding-top:10px; padding-bottom:26px;" data-slot="agenda.title">세션 일정</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr data-repeat="agenda.items" data-gap="12px">
+    <td style="padding-bottom:12px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff; border:1px solid #e9edf3; border-left:4px solid #1F5FBF; border-radius:14px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <tr><td style="padding:16px 22px 18px 22px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td valign="top" width="28">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td align="center" valign="middle" width="28" height="28" style="background:linear-gradient(180deg,#1F5FBF,#3B82F6); background-color:#1F5FBF; border-radius:50%; font-size:14px; font-weight:700; color:#ffffff; line-height:28px;" data-num>1</td>
+            </tr></table>
+          </td>
+          <td valign="middle" style="font-size:17px; font-weight:700; color:#141920; letter-spacing:-0.3px; padding-left:12px; line-height:1.4;" data-slot=".title">오프닝 — 클라우드가 바꾸는 개발 흐름</td>
+        </tr></table>
+        <div style="font-size:13px; font-weight:600; color:#1F5FBF; padding-top:8px;" data-slot=".speaker" data-optional=".speaker">홍길동 · Northwind Cloud</div>
+        <div style="font-size:14px; color:#8a8f98; line-height:1.5; padding-top:4px;" data-slot=".desc">행사 취지와 오늘의 일정을 안내합니다.</div>
+      </td></tr>
+      </table>
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+<!-- ===== 7. STEPS : 1-2-3 단계 안내 (white bg) ===== -->
+<tr data-section="steps">
+<td style="background-color:#ffffff; padding:42px 40px 42px 40px;">
+  <div align="center" style="font-size:12px; font-weight:600; letter-spacing:1.4px; color:#141920; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot="steps.eyebrow">How to join</div>
+  <div align="center" style="font-size:24px; font-weight:700; color:#141920; letter-spacing:-0.4px; padding-top:10px; padding-bottom:26px;" data-slot="steps.title">참여 방법</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr data-repeat="steps.items" data-gap="16px">
+    <td style="padding-bottom:16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td valign="top" width="28">
+          <!-- 배지를 1칸 테이블로 감싼다 — 옆 글이 여러 줄이어도 원이 28×28로 고정 -->
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td align="center" valign="middle" width="28" height="28" style="background:linear-gradient(180deg,#1F5FBF,#3B82F6); background-color:#1F5FBF; border-radius:50%; font-size:14px; font-weight:700; color:#ffffff; line-height:28px;" data-num>1</td>
+          </tr></table>
+        </td>
+        <td valign="top" style="padding-left:14px;">
+          <div style="font-size:17px; font-weight:700; color:#141920; letter-spacing:-0.3px; line-height:28px;" data-slot=".title">신청 폼 작성</div>
+          <div style="font-size:14px; color:#8a8f98; line-height:1.5; padding-top:2px;" data-slot=".sub" data-optional=".sub">아래 버튼을 눌러 이름과 소속을 남겨 주세요.</div>
+        </td>
+      </tr>
+      </table>
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+<!-- ===== 7b. TIMELINE : 주차/기간 일정 타임라인 (white bg, 세로·가로 변형) ===== -->
+<tr data-section="timeline">
+<td style="background-color:#ffffff; padding:42px 40px 42px 40px;">
+  <div align="center" style="font-size:12px; font-weight:600; letter-spacing:1.4px; color:#141920; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot="timeline.eyebrow">Program timeline</div>
+  <div align="center" style="font-size:24px; font-weight:700; color:#141920; letter-spacing:-0.4px; padding-top:10px; padding-bottom:26px;" data-slot="timeline.title">3주 과정 한눈에 보기</div>
+
+  <!-- 세로 변형: 점+선 레일 -->
+  <div data-variant="timeline.layout:vertical">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr data-repeat="timeline.items">
+      <td width="20" valign="top"
+          style="background:linear-gradient(180deg,#d6e4fa,#d6e4fa) 8px 0/3px 100% no-repeat;"
+          data-if-first-style="background:linear-gradient(180deg,#d6e4fa,#d6e4fa) 8px 12px/3px 100% no-repeat;"
+          data-if-last-style="background:linear-gradient(180deg,#d6e4fa,#d6e4fa) 8px 0/3px 12px no-repeat;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:5px;"><tr>
+          <td width="14" height="14" style="background:linear-gradient(180deg,#1F5FBF,#3B82F6); background-color:#1F5FBF; border-radius:50%; font-size:0; line-height:0;">&nbsp;</td>
+        </tr></table>
+      </td>
+      <td valign="top" style="padding:0 0 22px 14px;" data-if-last-style="padding:0 0 0 14px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:0.5px; color:#1F5FBF;" data-slot=".label">1주차</div>
+        <div style="font-size:16px; font-weight:700; color:#141920; letter-spacing:-0.3px; padding-top:3px; word-break:keep-all;" data-slot=".title">온보딩 & 환경 설정</div>
+        <div style="font-size:13.5px; color:#8a8f98; line-height:1.6; padding-top:4px; word-break:keep-all;" data-slot=".desc" data-optional=".desc">계정 세팅과 기본 개념을 익힙니다.</div>
+      </td>
+    </tr>
+    </table>
+  </div>
+
+  <!-- 가로 변형: 좌→우 칼럼 (table-layout:fixed로 균등 폭) -->
+  <div data-variant="timeline.layout:horizontal">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;">
+    <tr data-repeat-row="timeline.items">
+      <td valign="top" data-repeat=".">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td height="14" align="center"
+              style="background:linear-gradient(90deg,#d6e4fa,#d6e4fa) 0 6px/100% 3px no-repeat;"
+              data-if-first-style="background:linear-gradient(90deg,#d6e4fa,#d6e4fa) 100% 6px/50% 3px no-repeat;"
+              data-if-last-style="background:linear-gradient(90deg,#d6e4fa,#d6e4fa) 0 6px/50% 3px no-repeat;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center"><tr>
+              <td width="14" height="14" style="background:linear-gradient(180deg,#1F5FBF,#3B82F6); background-color:#1F5FBF; border-radius:50%; font-size:0; line-height:0;">&nbsp;</td>
+            </tr></table>
+          </td>
+        </tr></table>
+        <div align="center" style="font-size:12px; font-weight:700; letter-spacing:0.5px; color:#1F5FBF; padding-top:10px;" data-slot=".label">1주차</div>
+        <div align="center" style="font-size:15px; font-weight:700; color:#141920; letter-spacing:-0.3px; line-height:1.4; padding:4px 8px 0 8px; word-break:keep-all;" data-slot=".title">온보딩 & 환경 설정</div>
+        <div align="center" style="font-size:12.5px; color:#8a8f98; line-height:1.55; padding:4px 8px 0 8px; word-break:keep-all;" data-slot=".desc" data-optional=".desc">계정 세팅과 기본 개념을 익힙니다.</div>
+      </td>
+    </tr>
+    </table>
+  </div>
+</td>
+</tr>
+
+<!-- ===== 8. STATS : 숫자 스탯 카드 (white bg) ===== -->
+<tr data-section="stats">
+<td style="background-color:#ffffff; padding:42px 40px 42px 40px;">
+  <div align="center" style="font-size:12px; font-weight:600; letter-spacing:1.4px; color:#141920; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot="stats.eyebrow">Proof in numbers</div>
+  <div align="center" style="font-size:24px; font-weight:700; color:#141920; letter-spacing:-0.4px; padding-top:10px; padding-bottom:26px;" data-slot="stats.title">숫자로 보는 성과</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr data-repeat="stats.items" data-gap="12px">
+    <td style="padding-bottom:12px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff; border:1px solid #e9edf3; border-radius:14px; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <tr>
+        <td align="center" valign="middle" width="150" style="background-color:#f8fbff; border-radius:14px 0 0 14px; padding:16px 12px;">
+          <div style="font-size:26px; font-weight:800; letter-spacing:-1px; background:linear-gradient(180deg,#1F5FBF,#3B82F6); background-color:#1F5FBF; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#1F5FBF;" data-slot=".num">31%↑</div>
+          <div style="font-size:11px; color:#8a8f98; line-height:1.4; padding-top:4px;" data-slot=".cap">검토 시간 단축</div>
+          <div style="padding-top:8px;" data-optional=".tag"><span style="display:inline-block; font-size:10px; font-weight:700; color:#1F5FBF; border:1px solid #1F5FBF; border-radius:20px; padding:2px 9px;" data-slot=".tag">개발팀</span></div>
+        </td>
+        <td valign="middle" style="padding:16px 18px;">
+          <div style="font-size:15px; font-weight:700; color:#141920; letter-spacing:-0.3px;" data-slot=".title">코드 리뷰가 빨라졌습니다</div>
+          <div style="font-size:13px; color:#8a8f98; line-height:1.6; padding-top:5px;" data-slot=".story">도입 후 문서가 먼저 나와서, 리뷰어가 의도를 파악하는 시간이 크게 줄었습니다.</div>
+        </td>
+      </tr>
+      </table>
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+<!-- ===== 9. QUOTES : 인용/후기 (tint bg) ===== -->
+<tr data-section="quotes">
+<td style="background-color:#f4f8fe; padding:42px 40px 42px 40px;">
+  <div align="center" style="font-size:12px; font-weight:600; letter-spacing:1.4px; color:#141920; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot="quotes.eyebrow">Voices</div>
+  <div align="center" style="font-size:24px; font-weight:700; color:#141920; letter-spacing:-0.4px; padding-top:10px; padding-bottom:26px;" data-slot="quotes.title">참가자 후기</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr data-repeat="quotes.items" data-gap="12px">
+    <td style="padding-bottom:12px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff; border:1px solid #e9edf3; border-radius:18px; box-shadow:0 4px 20px rgba(0,0,0,0.10);">
+      <tr><td style="padding:20px 24px;">
+        <div style="font-size:15px; color:#141920; line-height:1.7;" data-slot=".quote">"설명을 길게 안 해도 결과물이 나와서 놀랐어요. 다음 행사에도 바로 쓸 겁니다."</div>
+        <div style="font-size:13px; font-weight:600; color:#1F5FBF; padding-top:10px;">— <span data-slot=".name">홍길동</span><span data-optional=".role"> · <span data-slot=".role">파트너 마케팅</span></span></div>
+      </td></tr>
+      </table>
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+<!-- ===== 10. INFOBAR : 일시/장소/대상 스트립 (ink bg) ===== -->
+<tr data-section="infobar">
+<td style="background-color:#141920; padding:26px 40px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr data-repeat-row="infobar.cells">
+    <td width="1" style="background-color:rgba(255,255,255,0.16); font-size:0; line-height:0;" data-spacer>&nbsp;</td>
+    <td valign="top" style="padding:6px 20px;" data-repeat=".">
+      <div style="font-size:11px; font-weight:700; letter-spacing:1.5px; color:#dfe9f9; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot=".label">일시</div>
+      <div style="font-size:17px; font-weight:700; color:#ffffff; line-height:1.4; padding-top:8px;" data-slot=".value">10월 15일 (수)</div>
+      <div style="font-size:13px; color:#bbbbbb; padding-top:3px;" data-slot=".sub" data-optional=".sub">오후 2시 ~ 5시</div>
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+<!-- ===== 11. PRODUCT CARDS : 제품 소개 카드 (tint bg) ===== -->
+<tr data-section="productCards">
+<td style="background-color:#f4f8fe; padding:42px 40px 42px 40px;">
+  <div align="center" style="font-size:12px; font-weight:600; letter-spacing:1.4px; color:#141920; font-family:'Inter','Pretendard','Segoe UI',sans-serif;" data-slot="productCards.eyebrow">Products</div>
+  <div align="center" style="font-size:24px; font-weight:700; color:#141920; letter-spacing:-0.4px; padding-top:10px; padding-bottom:26px;" data-slot="productCards.title">무엇을 만나게 되나요</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr data-repeat="productCards.items" data-gap="14px">
+    <td style="padding-bottom:14px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff; border:1px solid #e9edf3; border-radius:28px; box-shadow:0 4px 20px rgba(0,0,0,0.10);">
+      <tr><td style="padding:24px 28px 26px 28px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td style="padding-right:9px;" data-brand-icon-cell><img src="{BRAND_ICON}" width="26" height="26" alt="" style="display:block;" data-brand-icon/></td>
+          <td style="font-size:20px; font-weight:800; background:linear-gradient(90deg,#3B82F6,#1F5FBF); background-color:#1F5FBF; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#1F5FBF;" data-brand-wordmark data-base-style="font-size:20px; font-weight:800;" data-slot=".name">Nimbus</td>
+          <td width="10" style="font-size:0; line-height:0;">&nbsp;</td>
+          <td style="background-color:#000000; border-radius:100px; padding:6px 14px;"><span style="font-size:12px; font-weight:700; color:#ffffff;" data-slot=".audience">개발자</span></td>
+        </tr></table>
+        <div style="font-size:16px; font-weight:700; color:#141920; letter-spacing:-0.3px; line-height:1.45; padding-top:14px;" data-slot=".question">의도까지 검토해 주는 개발 도우미를 찾는다면?</div>
+        <div style="font-size:14px; color:#8a8f98; line-height:1.55; padding-top:6px;" data-slot=".desc">문서 주도 개발로, 코드보다 의도를 먼저 맞춥니다.</div>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;">
+        <tr data-repeat-row=".hashtags">
+          <td width="8" style="font-size:0; line-height:0;" data-spacer>&nbsp;</td>
+          <td style="background-color:#eaf1fc; border-radius:100px; padding:7px 14px;" data-repeat=".">
+            <span style="font-size:12.5px; font-weight:600; color:#1F5FBF;" data-slot=".">#문서 주도</span>
+          </td>
+        </tr>
+        </table>
+      </td></tr>
+      </table>
+    </td>
+  </tr>
+  </table>
+</td>
+</tr>
+
+<!-- ===== 12. BIGNUMBER : 빅넘버 리드 (tint bg) ===== -->
+<tr data-section="bignumber">
+<td style="background-color:#f8fbff; padding:44px 44px 46px 44px;">
+  <div style="font-size:34px; font-weight:800; letter-spacing:-1px; line-height:1.2; background:linear-gradient(90deg,#14B8A6,#0F766E); background-color:#1F5FBF; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#1F5FBF;" data-slot="bignumber.big">약 300조원+</div>
+  <div style="font-size:24px; font-weight:800; color:#141920; letter-spacing:-0.5px; line-height:1.35; padding-top:6px;" data-slot="bignumber.line1">글로벌 클라우드 서비스 시장</div>
+  <div style="font-size:24px; font-weight:800; color:#141920; letter-spacing:-0.5px; line-height:1.35; padding-top:18px;" data-slot="bignumber.line2" data-optional="bignumber.line2">지금 준비하세요</div>
+  <div style="font-size:12px; color:#8a8f98; padding-top:16px;" data-slot="bignumber.source" data-optional="bignumber.source">출처: 시장 조사 보고서</div>
+</td>
+</tr>
+
+<!-- ===== 5. FOOTER : headline + next step + contact + CTA pill ===== -->
+<tr data-section="footer">
+<td style="background-color:#f7faff; background-image:url('{HERO_BG}'); background-size:cover; background-position:center bottom; padding:40px 24px 40px 24px;" data-slot-bg="images.heroBg">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:rgba(255,255,255,0.72); background:linear-gradient(150deg, rgba(255,255,255,0.45) 40%, #ffffff 75%); border:2px solid rgba(0,0,0,0.04); border-radius:10px; box-shadow:0 4px 30px rgba(0,0,0,0.02);">
+  <tr><td style="padding:30px 30px 32px 30px;">
+    <div style="font-size:21px; font-weight:800; color:#141920; letter-spacing:-0.4px; line-height:1.6;" data-slot="footer.headline">단순한 세미나가 아니라,
+고객과 파트너가 함께 성장을 준비하는 자리입니다.</div>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:24px;">
+    <tr>
+      <td valign="top" width="42%" style="font-size:14px; color:#141920; line-height:1.8;" data-slot="footer.leftNote">관심 있는 팀원과 함께
+신청해 주세요.</td>
+      <td valign="top" style="font-size:14px; color:#141920; line-height:1.8;" data-bullets="footer.bullets">
+        <span style="color:#1F5FBF;">●</span>&nbsp; 도입 가능성이 있는 기존 고객사<br/>
+        <span style="color:#1F5FBF;">●</span>&nbsp; 신규 검토 중인 팀 (리스트 별도 전달)
+      </td>
+    </tr>
+    </table>
+
+    <div style="font-size:14px; color:#141920; line-height:1.8; padding-top:24px;"><span data-slot="footer.contactLines">문의 Northwind Cloud 마케팅팀
+02-000-0000</span><br data-contact-email-br/><a href="mailto:newsletter@example.com" style="color:#141920; text-decoration:none;" data-slot-email="footer.contactEmail">newsletter@example.com</a></div>
+
+    <!-- black pill CTA : left-aligned partial width -->
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;">
+    <tr><td align="center" style="background-color:#000000; border-radius:100px; padding:15px 48px;">
+      <span style="font-size:17px; font-weight:700; color:#ffffff;" data-slot="footer.cta">선착순 마감 — 빠른 신청 부탁드립니다</span>
+    </td></tr>
+    </table>
+  </td></tr>
+  </table>
+</td>
+</tr>
+
+</table>
+
+</td></tr>
+</table>
+</body>
+</html>

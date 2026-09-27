@@ -1,0 +1,25 @@
+{
+  "name": "kage-bunshin-lite",
+  "version": "0.1.0",
+  "description": "kage-bunshin (그림자 분신술) lite — plain-text brief → Amazon Bedrock → slot-constrained JSON spec → branded eDM/newsletter HTML. Theme folders (templates/<theme>) own the design; the AI only writes copy.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync:templates": "node scripts/sync-templates.mjs",
+    "template:build": "node scripts/build-template.mjs && node scripts/build-schema-v2.mjs && node scripts/build-design-v2.mjs",
+    "local": "npm run sync:templates && node scripts/local-api.mjs",
+    "dev": "npm run dev --prefix web -- --host 127.0.0.1",
+    "build": "npm run sync:templates && npm run build --prefix web",
+    "deploy": "npm run build && npm run deploy --prefix infra",
+    "e2e": "node scripts/e2e.mjs",
+    "edit-rate": "node scripts/edit-rate.mjs"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.1133.0",
+    "@aws-sdk/client-dynamodb": "^3.1127.0",
+    "@aws-sdk/util-dynamodb": "^3.996.9",
+    "linkedom": "^0.18.5",
+    "puppeteer-core": "^25.11.0"
+  }
+}

@@ -1,0 +1,58 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Pretendard", "Segoe UI", "Malgun Gothic", sans-serif;
+  background: #f2f0f4;
+  color: #141920;
+}
+button { font-family: inherit; cursor: pointer; }
+input, textarea { font-family: inherit; font-size: 14px; }
+
+.btn-primary { background: #141920; color: #fff; border: none; border-radius: 100px; padding: 12px 28px; font-size: 15px; font-weight: 700; }
+.btn-primary:disabled { opacity: 0.5; cursor: default; }
+.btn-ghost { background: #fff; color: #141920; border: 1px solid #d9d4de; border-radius: 100px; padding: 10px 18px; font-size: 13px; font-weight: 600; }
+.btn-ghost:hover { border-color: #7b00dd; color: #6b00c8; }
+.btn-ghost:disabled { opacity: 0.5; cursor: default; }
+.error { color: #e5484d; font-size: 13px; }
+.tip { color: #8a8f98; font-size: 12.5px; line-height: 1.5; }
+.loading { padding: 80px; text-align: center; color: #999; }
+.badge { display: inline-block; vertical-align: middle; margin-left: 8px; padding: 3px 9px; border-radius: 100px; background: #fef3c7; color: #92400e; font-size: 12px; font-weight: 700; }
+
+/* ---- 홈 ---- */
+.home { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.home-card { width: 720px; max-width: 100%; background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); }
+.home-card h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: -0.5px; }
+.home-sub { color: #555; line-height: 1.6; margin: 0 0 20px; }
+.home-card textarea { width: 100%; border: 1px solid #ddd; border-radius: 12px; padding: 14px; font-size: 14px; line-height: 1.6; resize: vertical; }
+.home-row { display: flex; gap: 10px; margin-top: 14px; align-items: center; flex-wrap: wrap; }
+.progress-line { display: inline-flex; align-items: center; gap: 8px; color: #555; font-size: 13px; }
+.progress-spinner { width: 12px; height: 12px; border: 2px solid #ddd; border-top-color: #7b00dd; border-radius: 50%; animation: spin .9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- 편집기 ---- */
+.editor { height: 100vh; display: flex; flex-direction: column; }
+.topbar { display: flex; align-items: center; gap: 16px; padding: 10px 16px; background: #fff; border-bottom: 1px solid #e6e2ea; }
+.topbar a { color: #6b00c8; text-decoration: none; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.topbar-title { flex: 1; min-width: 0; font-weight: 700; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topbar-actions { display: flex; align-items: center; gap: 8px; }
+.topbar-actions .btn-primary { padding: 8px 18px; font-size: 13px; }
+.topbar-actions .btn-ghost { padding: 8px 14px; font-size: 13px; }
+.save-state { color: #999; font-size: 12px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.save-state:not(:empty)::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #bbb; flex: none; }
+.save-state.is-ok { color: #1d7a52; }
+.save-state.is-ok::before { background: #2eaa6f; }
+.save-state.is-pending::before { background: #f0a020; animation: save-pulse 1s ease-in-out infinite; }
+.save-state.is-error { color: #c62a2f; font-weight: 600; white-space: normal; }
+.save-state.is-error::before { background: #e5484d; }
+@keyframes save-pulse { 50% { opacity: .3; } }
+.note-bar { padding: 8px 16px; background: #f3eafa; color: #3b066e; font-size: 13px; border-bottom: 1px solid #e6d9f5; }
+.topbar-actions .fill-hint { border-color: #f0a020; background: #fff8e6; color: #7a4b00; font-weight: 700; }
+.theme-picker { display: inline-flex; gap: 6px; padding: 4px 8px; border: 1px solid #e6e2ea; border-radius: 100px; background: #fff; margin-right: 4px; }
+.theme-dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; padding: 0; cursor: pointer; box-shadow: inset 0 0 0 2px #fff; }
+.theme-dot.is-on { border-color: #141920; }
+.warnings { margin: 0; padding: 8px 16px 8px 32px; background: #fff8e6; color: #7a4b00; font-size: 12.5px; border-bottom: 1px solid #f1e2b6; max-height: 160px; overflow: auto; }
+.warnings li { margin: 2px 0; }
+.editor-body { flex: 1; display: flex; justify-content: center; min-height: 0; padding: 16px; overflow: auto; }
+.preview-wrap { width: 720px; max-width: 100%; height: 100%; min-height: 600px; overflow: hidden; }
+.preview-frame { width: 100%; height: 100%; min-height: 600px; border: none; background: #f5f2f6; border-radius: 12px; display: block; }
+.editor-tip { margin: 0; padding: 8px 16px 12px; text-align: center; }

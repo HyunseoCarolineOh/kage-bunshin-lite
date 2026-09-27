@@ -1,0 +1,1001 @@
+{
+  "id": "sample",
+  "name": "Northwind Cloud 뉴스레터",
+  "version": 1,
+  "canvasWidth": 640,
+  "_comment": "글자수 한도 도출 규칙: 한 줄 글자수 ≈ 사용가능 폭(px) ÷ 글자크기(px). 한글=1, 영문/숫자/공백=0.55 가중치(perLine은 가중 단위). maxChars는 AI에게 주는 단순 문자수 상한.",
+  "sections": {
+    "hero": {
+      "label": "히어로",
+      "required": true,
+      "desc": "제목·리드·핵심 배지 — 항상 맨 위.",
+      "slots": {
+        "title": {
+          "type": "multiline",
+          "maxChars": 57,
+          "maxLines": 2,
+          "perLine": 19,
+          "required": true,
+          "default": "Northwind Cloud\n파트너 성장 세미나 🎉",
+          "desc": "행사/프로모션 제목. 줄바꿈(\\n)으로 2줄 구성 가능 — 의미 단위로 끊을 것. 이모지 1개까지 허용."
+        },
+        "paragraphs": {
+          "type": "list",
+          "minItems": 1,
+          "maxItems": 2,
+          "itemMaxChars": 90,
+          "itemMaxLines": 2,
+          "itemPerLine": 32,
+          "required": true,
+          "default": [
+            "고객사와 파트너가 함께 배우는\n반나절 실습 세미나",
+            "관심 있는 팀원과 함께 신청해 주세요."
+          ],
+          "desc": "부제/리드 문단 1~2개. 각 문단 최대 2줄, 줄바꿈은 의미 단위."
+        },
+        "badges": {
+          "type": "list",
+          "minItems": 1,
+          "maxItems": 2,
+          "itemMaxChars": 28,
+          "itemMaxLines": 1,
+          "itemPerLine": 18,
+          "required": true,
+          "default": [
+            "2026년 10월 15일 (수)",
+            "선착순 40명 마감"
+          ],
+          "desc": "핵심 조건/마감 배지 1~2개 (날짜·기한·조건 등 짧은 사실)."
+        }
+      }
+    },
+    "values": {
+      "label": "가치 제안 (카드)",
+      "required": false,
+      "defaultOn": true,
+      "desc": "받는 사람이 얻는 가치 2~3개를 카드로. 프로모션·모집에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Value offering",
+          "desc": "영문 섹션 라벨 2~3단어 (예: Value offering, Why join, What you get). 첫 글자만 대문자."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "파트너에게 드리는 가치",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "cards": {
+          "type": "cards",
+          "minItems": 2,
+          "maxItems": 4,
+          "required": true,
+          "fields": {
+            "title": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "perLine": 26,
+              "desc": "카드 제목 — 받는 사람이 얻는 가치 한 문장"
+            },
+            "sub": {
+              "maxChars": 100,
+              "maxLines": 2,
+              "perLine": 36,
+              "desc": "카드 부연 — 구체적 숫자/사실 위주, 최대 2줄"
+            }
+          },
+          "default": [
+            {
+              "title": "신규 프로젝트 착수를 직접 지원",
+              "sub": "세미나 당일 1:1 기술 상담 예약 가능"
+            },
+            {
+              "title": "기존 고객과 신규 고객 모두 환영",
+              "sub": "도입 검토 단계에 맞춘 실습 코스 두 가지"
+            },
+            {
+              "title": "실습 자료와 크레딧 제공",
+              "sub": "행사 뒤에도 같은 환경에서 이어서 연습"
+            }
+          ],
+          "desc": "가치 카드 2~4개. 번호 배지는 자동."
+        }
+      }
+    },
+    "qualify": {
+      "label": "정보 표",
+      "required": false,
+      "defaultOn": true,
+      "desc": "가격표·조건표·일정표 등 표 데이터가 있을 때만.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "How to qualify",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "추천 구성",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "condition": {
+          "type": "text",
+          "maxChars": 56,
+          "maxLines": 1,
+          "perLine": 38,
+          "required": false,
+          "default": "조건 | 파트너 프로그램 가입 고객사",
+          "desc": "표 위 조건 한 줄 (없으면 생략)."
+        },
+        "groups": {
+          "type": "groups",
+          "minItems": 1,
+          "maxItems": 3,
+          "required": true,
+          "fields": {
+            "brand": {
+              "enum": [
+                "nimbus",
+                "stratus",
+                "cirrus",
+                "none"
+              ],
+              "desc": "그룹 브랜드 — 워드마크 색·아이콘 결정. 해당 없으면 none"
+            },
+            "name": {
+              "maxChars": 20,
+              "maxLines": 1,
+              "perLine": 14,
+              "desc": "그룹 이름 (제품명 등)"
+            },
+            "headers": {
+              "minItems": 3,
+              "maxItems": 5,
+              "itemMaxChars": 14,
+              "desc": "표 머리글 3~5개"
+            },
+            "highlightCol": {
+              "type": "int",
+              "desc": "그라데이션 강조 열 번호(0부터), 없으면 -1"
+            },
+            "rows": {
+              "minItems": 1,
+              "maxItems": 8,
+              "desc": "표 행 — 각 행은 headers와 같은 개수의 셀 배열, 셀 최대 24자"
+            },
+            "cellMaxChars": 24
+          },
+          "default": [
+            {
+              "brand": "nimbus",
+              "name": "Nimbus",
+              "headers": [
+                "플랜",
+                "시트당 요금",
+                "시트수",
+                "월 예상 비용",
+                "추천 대상"
+              ],
+              "highlightCol": 3,
+              "rows": [
+                [
+                  "Team",
+                  "$20",
+                  "20석",
+                  "$400",
+                  "개발팀 20명"
+                ]
+              ]
+            },
+            {
+              "brand": "stratus",
+              "name": "Stratus",
+              "headers": [
+                "플랜",
+                "시트 금액",
+                "기본료",
+                "월 예상 비용",
+                "추천 대상"
+              ],
+              "highlightCol": 3,
+              "rows": [
+                [
+                  "Enterprise 20석",
+                  "$800",
+                  "$250",
+                  "$1,050",
+                  "데이터팀 20명"
+                ],
+                [
+                  "Enterprise 10석",
+                  "$400",
+                  "$250",
+                  "$650",
+                  "데이터팀 10명"
+                ]
+              ]
+            }
+          ],
+          "desc": "정보 표 그룹 1~3개 (가격표·일정표·조건표 등). 입력에 표로 만들 만한 데이터가 없으면 이 섹션을 끈다."
+        }
+      }
+    },
+    "about": {
+      "label": "소개 (사진+불릿)",
+      "required": false,
+      "defaultOn": true,
+      "desc": "사진 한 장 + 핵심 사실 불릿 + 구성 필. 실물(음식·굿즈·공간)이 있는 행사에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "About the event",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 12,
+          "maxLines": 1,
+          "perLine": 9,
+          "required": true,
+          "default": "행사 소개",
+          "desc": "섹션 제목 — 아주 짧게 (좁은 열이라 9자 이내)."
+        },
+        "bullets": {
+          "type": "list",
+          "minItems": 2,
+          "maxItems": 6,
+          "itemMaxChars": 36,
+          "itemMaxLines": 1,
+          "itemPerLine": 24,
+          "required": true,
+          "default": [
+            "10월 15일, 서울 강남 세미나룸",
+            "주최 측이 장소와 일정을 조율",
+            "참가 인원수만큼 실습 자리 제공"
+          ],
+          "desc": "핵심 사실 불릿 2~6개 (언제/어디서/무엇을)."
+        },
+        "photoAlt": {
+          "type": "text",
+          "maxChars": 60,
+          "maxLines": 1,
+          "perLine": 40,
+          "required": true,
+          "default": "세미나 현장 — 실습 테이블과 발표 화면",
+          "desc": "사진 대체텍스트 (이메일 이미지 차단 대비)."
+        },
+        "pills": {
+          "type": "pills",
+          "minItems": 2,
+          "maxItems": 6,
+          "required": true,
+          "fields": {
+            "main": {
+              "maxChars": 16,
+              "maxLines": 1,
+              "desc": "필 대표 단어"
+            },
+            "sub": {
+              "maxChars": 30,
+              "maxLines": 1,
+              "optional": true,
+              "desc": "회색 보조 설명 (없으면 생략)"
+            }
+          },
+          "default": [
+            {
+              "main": "기조 발표"
+            },
+            {
+              "main": "실습 두 코스",
+              "sub": "입문, 심화"
+            },
+            {
+              "main": "네트워킹",
+              "sub": "다과와 자유 대화"
+            },
+            {
+              "main": "상담",
+              "sub": "커피, 주스, 탄산상담"
+            }
+          ],
+          "desc": "구성 요소 필 2~6개 (2개씩 줄바꿈)."
+        }
+      }
+    },
+    "agenda": {
+      "label": "세션 일정",
+      "required": false,
+      "defaultOn": false,
+      "desc": "같은 날 행사의 세션 목록 — 시간순으로 위→아래 (시간·제목·발표자). 초대장에 적합. 여러 날 일정은 timeline을 쓴다.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Agenda",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "세션 일정",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 8,
+          "required": true,
+          "fields": {
+            "title": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "perLine": 27,
+              "desc": "세션 제목 (시간을 앞에 붙여도 좋음, 예: 14:00 오프닝)"
+            },
+            "speaker": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "perLine": 30,
+              "optional": true,
+              "desc": "발표자 · 소속 (없으면 생략)"
+            },
+            "desc": {
+              "maxChars": 100,
+              "maxLines": 2,
+              "perLine": 34,
+              "desc": "세션 한 줄 소개"
+            }
+          },
+          "default": [
+            {
+              "title": "오프닝 — 클라우드가 바꾸는 개발 흐름",
+              "speaker": "홍길동 · Northwind Cloud",
+              "desc": "행사 취지와 오늘의 일정을 안내합니다."
+            },
+            {
+              "title": "핸즈온 — 문서 주도 개발 실습",
+              "speaker": "Northwind Cloud 솔루션 엔지니어",
+              "desc": "실제 프로젝트로 문서 작성 흐름을 따라 해봅니다."
+            },
+            {
+              "title": "네트워킹 & Q&A",
+              "desc": "다과와 함께 자유롭게 질문하고 교류하는 시간입니다."
+            }
+          ],
+          "desc": "세션 2~8개. 번호 배지는 자동."
+        }
+      }
+    },
+    "steps": {
+      "label": "1-2-3 스텝",
+      "required": false,
+      "defaultOn": false,
+      "desc": "신청 방법·참여 절차 등 순서 있는 안내 (번호 자동).",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "How to join",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "참여 방법",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 6,
+          "required": true,
+          "fields": {
+            "title": {
+              "maxChars": 40,
+              "maxLines": 1,
+              "perLine": 28,
+              "desc": "단계 제목 — 동사로 짧게"
+            },
+            "sub": {
+              "maxChars": 76,
+              "maxLines": 2,
+              "perLine": 34,
+              "optional": true,
+              "desc": "단계 부연 (없으면 생략)"
+            }
+          },
+          "default": [
+            {
+              "title": "신청 폼 작성",
+              "sub": "아래 버튼을 눌러 이름과 소속을 남겨 주세요."
+            },
+            {
+              "title": "확정 메일 확인",
+              "sub": "행사 3일 전까지 참석 확정 메일을 보내드립니다."
+            },
+            {
+              "title": "행사 당일 체크인",
+              "sub": "1층 로비에서 이름을 말씀해 주시면 됩니다."
+            }
+          ],
+          "desc": "단계 2~6개. 번호는 자동."
+        }
+      }
+    },
+    "timeline": {
+      "label": "타임라인 (기간 일정)",
+      "required": false,
+      "defaultOn": false,
+      "desc": "행사 일정을 타임라인으로. 같은 날 시간순이면 세로(위→아래), 여러 날·주차 등 일별이면 가로(좌→우) — layout으로 지정.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Program timeline",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "3주 과정 한눈에 보기",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "layout": {
+          "type": "choice",
+          "enum": [
+            "vertical",
+            "horizontal"
+          ],
+          "required": true,
+          "default": "horizontal",
+          "label": "방향",
+          "optionLabels": {
+            "vertical": "세로 — 시간순 (위→아래)",
+            "horizontal": "가로 — 일별 (좌→우)"
+          },
+          "desc": "일정의 성격이 결정: 항목이 같은 날의 시각 흐름(14:00, 15:30…)이면 vertical(위→아래), 일·주 단위(Day 1, 1주차, 날짜별)면 horizontal(좌→우)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 5,
+          "required": true,
+          "fields": {
+            "label": {
+              "maxChars": 12,
+              "maxLines": 1,
+              "desc": "시점 라벨 (1주차, 10/15, Day 1 등)"
+            },
+            "title": {
+              "maxChars": 24,
+              "maxLines": 1,
+              "perLine": 20,
+              "desc": "그 시점에 하는 것 한 줄"
+            },
+            "desc": {
+              "maxChars": 80,
+              "maxLines": 3,
+              "perLine": 24,
+              "optional": true,
+              "desc": "부연 설명 (없으면 생략, 가로형은 짧게)"
+            }
+          },
+          "default": [
+            {
+              "label": "1주차",
+              "title": "온보딩 & 환경 설정",
+              "desc": "계정 세팅과 기본 개념을 익힙니다."
+            },
+            {
+              "label": "2주차",
+              "title": "실습 프로젝트",
+              "desc": "실제 시나리오로 직접 만들어 봅니다."
+            },
+            {
+              "label": "3주차",
+              "title": "데모데이 & 수료",
+              "desc": "결과물을 발표하고 배지를 받습니다."
+            }
+          ],
+          "desc": "시점 2~5개 (가로형은 2~4개 권장)."
+        }
+      }
+    },
+    "stats": {
+      "label": "숫자 스탯",
+      "required": false,
+      "defaultOn": false,
+      "desc": "성과·사례를 큰 숫자로 보여주는 카드 (숫자 + 설명 + 스토리). 실적 공유·사례 소개에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Proof in numbers",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "숫자로 보는 성과",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 6,
+          "required": true,
+          "fields": {
+            "num": {
+              "maxChars": 12,
+              "maxLines": 1,
+              "desc": "큰 숫자 (단위·화살표 포함, 예: 31%↑, 1억+, $50)"
+            },
+            "cap": {
+              "maxChars": 24,
+              "maxLines": 2,
+              "perLine": 11,
+              "desc": "숫자 아래 짧은 설명"
+            },
+            "tag": {
+              "maxChars": 12,
+              "maxLines": 1,
+              "optional": true,
+              "desc": "작은 태그 (대상·분야, 없으면 생략)"
+            },
+            "title": {
+              "maxChars": 34,
+              "maxLines": 1,
+              "perLine": 23,
+              "desc": "스토리 제목 한 줄"
+            },
+            "story": {
+              "maxChars": 110,
+              "maxLines": 3,
+              "perLine": 26,
+              "desc": "숫자의 맥락 설명, 최대 3줄"
+            }
+          },
+          "default": [
+            {
+              "num": "31%↑",
+              "cap": "검토 시간 단축",
+              "tag": "개발팀",
+              "title": "코드 리뷰가 빨라졌습니다",
+              "story": "도입 후 문서가 먼저 나와서, 리뷰어가 의도를 파악하는 시간이 크게 줄었습니다."
+            },
+            {
+              "num": "10분",
+              "cap": "뉴스레터 제작 시간",
+              "title": "디자이너 없이 즉시 제작",
+              "story": "브리핑만 적으면 완성본이 나와, 행사 준비 리드타임이 하루에서 10분으로 줄었습니다."
+            }
+          ],
+          "desc": "스탯 카드 2~6개."
+        }
+      }
+    },
+    "quotes": {
+      "label": "인용/후기",
+      "required": false,
+      "defaultOn": false,
+      "desc": "고객·참가자 한마디 인용. 재참가 유도·사례 공유에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Voices",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "참가자 후기",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 1,
+          "maxItems": 5,
+          "required": true,
+          "fields": {
+            "quote": {
+              "maxChars": 140,
+              "maxLines": 3,
+              "perLine": 32,
+              "desc": "인용문 — 따옴표 포함해 자연스럽게, 최대 3줄"
+            },
+            "name": {
+              "maxChars": 20,
+              "maxLines": 1,
+              "desc": "말한 사람 이름"
+            },
+            "role": {
+              "maxChars": 24,
+              "maxLines": 1,
+              "optional": true,
+              "desc": "소속·직함 (없으면 생략)"
+            }
+          },
+          "default": [
+            {
+              "quote": "\"설명을 길게 안 해도 결과물이 나와서 놀랐어요. 다음 행사에도 바로 쓸 겁니다.\"",
+              "name": "홍길동",
+              "role": "파트너 마케팅"
+            },
+            {
+              "quote": "\"디자이너 없이 이 퀄리티면 충분하죠. 팀 전체가 쓰기 시작했습니다.\"",
+              "name": "김민준",
+              "role": "고객 성공팀"
+            }
+          ],
+          "desc": "인용 1~5개."
+        }
+      }
+    },
+    "infobar": {
+      "label": "일시·장소 바",
+      "required": false,
+      "defaultOn": false,
+      "desc": "일시/장소/대상을 한 줄 검정 스트립으로 강조. 초대장에 적합.",
+      "slots": {
+        "cells": {
+          "type": "items",
+          "minItems": 2,
+          "maxItems": 3,
+          "required": true,
+          "fields": {
+            "label": {
+              "maxChars": 10,
+              "maxLines": 1,
+              "desc": "항목 라벨 (일시/장소/대상 등)"
+            },
+            "value": {
+              "maxChars": 20,
+              "maxLines": 1,
+              "perLine": 13,
+              "desc": "핵심 값 — 짧게"
+            },
+            "sub": {
+              "maxChars": 20,
+              "maxLines": 1,
+              "perLine": 13,
+              "optional": true,
+              "desc": "보조 줄 (없으면 생략)"
+            }
+          },
+          "default": [
+            {
+              "label": "일시",
+              "value": "10월 15일 (수)",
+              "sub": "오후 2시 ~ 5시"
+            },
+            {
+              "label": "장소",
+              "value": "강남 세미나룸",
+              "sub": "본사 5층"
+            }
+          ],
+          "desc": "정보 칸 2~3개 (일시/장소/대상)."
+        }
+      }
+    },
+    "productCards": {
+      "label": "제품 소개 카드",
+      "required": false,
+      "defaultOn": false,
+      "desc": "제품을 카드로 소개 (로고·대상·질문형 헤드라인·해시태그). 제품 홍보에 적합.",
+      "slots": {
+        "eyebrow": {
+          "type": "text",
+          "maxChars": 20,
+          "maxLines": 1,
+          "perLine": 30,
+          "required": true,
+          "default": "Products",
+          "desc": "영문 섹션 라벨 2~3단어."
+        },
+        "title": {
+          "type": "text",
+          "maxChars": 34,
+          "maxLines": 1,
+          "perLine": 23,
+          "required": true,
+          "default": "무엇을 만나게 되나요",
+          "desc": "섹션 제목 (한글, 한 줄)."
+        },
+        "items": {
+          "type": "items",
+          "minItems": 1,
+          "maxItems": 4,
+          "required": true,
+          "fields": {
+            "brand": {
+              "enum": [
+                "nimbus",
+                "stratus",
+                "cirrus",
+                "none"
+              ],
+              "desc": "제품 브랜드 — 워드마크 색·아이콘 결정"
+            },
+            "name": {
+              "maxChars": 20,
+              "maxLines": 1,
+              "perLine": 14,
+              "desc": "제품 이름 (공식 표기)"
+            },
+            "audience": {
+              "maxChars": 10,
+              "maxLines": 1,
+              "desc": "대상 한 단어 (개발자/비개발자/인프라 등)"
+            },
+            "question": {
+              "maxChars": 64,
+              "maxLines": 2,
+              "perLine": 29,
+              "desc": "질문형 헤드라인 (…찾는다면? …싶다면?)"
+            },
+            "desc": {
+              "maxChars": 76,
+              "maxLines": 2,
+              "perLine": 34,
+              "desc": "제품 한 줄 설명"
+            },
+            "hashtags": {
+              "type": "list",
+              "minItems": 2,
+              "maxItems": 3,
+              "itemMaxChars": 14,
+              "desc": "#해시태그 2~3개 (# 포함)"
+            }
+          },
+          "default": [
+            {
+              "brand": "nimbus",
+              "name": "Nimbus",
+              "audience": "개발자",
+              "question": "의도까지 검토해 주는 개발 도우미를 찾는다면?",
+              "desc": "문서 주도 개발로, 코드보다 의도를 먼저 맞춥니다.",
+              "hashtags": [
+                "#문서 주도",
+                "#개발의 다음 단계"
+              ]
+            },
+            {
+              "brand": "stratus",
+              "name": "Stratus",
+              "audience": "비개발자",
+              "question": "모두가 쓸 수 있는 분석 도구를 찾는다면?",
+              "desc": "우리 회사만의 데이터 분석 플랫폼.",
+              "hashtags": [
+                "#깔끔한 UX/UI",
+                "#BI/대시보드"
+              ]
+            }
+          ],
+          "desc": "제품 카드 1~4개."
+        }
+      }
+    },
+    "bignumber": {
+      "label": "빅넘버 리드",
+      "required": false,
+      "defaultOn": false,
+      "desc": "큰 숫자 하나로 시선을 잡는 리드 블록 (시장 규모·마감 인원 등). 히어로 바로 뒤에 적합.",
+      "slots": {
+        "big": {
+          "type": "text",
+          "maxChars": 14,
+          "maxLines": 1,
+          "required": true,
+          "default": "약 300조원+",
+          "desc": "큰 그라데이션 숫자 (단위 포함)."
+        },
+        "line1": {
+          "type": "text",
+          "maxChars": 30,
+          "maxLines": 1,
+          "perLine": 21,
+          "required": true,
+          "default": "글로벌 클라우드 서비스 시장",
+          "desc": "숫자가 뜻하는 것 한 줄."
+        },
+        "line2": {
+          "type": "text",
+          "maxChars": 30,
+          "maxLines": 1,
+          "perLine": 21,
+          "required": false,
+          "default": "지금 준비하세요",
+          "desc": "이어지는 메시지 한 줄 (없으면 생략)."
+        },
+        "source": {
+          "type": "text",
+          "maxChars": 40,
+          "maxLines": 1,
+          "required": false,
+          "default": "출처: 시장 조사 보고서",
+          "desc": "출처 표기 (없으면 생략)."
+        }
+      }
+    },
+    "footer": {
+      "label": "푸터 (마무리+연락처+CTA)",
+      "required": true,
+      "desc": "마무리 메시지·연락처·행동 버튼 — 항상 맨 아래.",
+      "slots": {
+        "headline": {
+          "type": "multiline",
+          "maxChars": 72,
+          "maxLines": 2,
+          "perLine": 25,
+          "required": true,
+          "default": "단순한 세미나가 아니라,\n고객과 파트너가 함께 성장을 준비하는 자리입니다.",
+          "desc": "마무리 헤드라인 — 행사의 의미를 담은 문장, 최대 2줄."
+        },
+        "leftNote": {
+          "type": "multiline",
+          "maxChars": 48,
+          "maxLines": 2,
+          "perLine": 16,
+          "required": true,
+          "default": "관심 있는 팀원과 함께\n신청해 주세요.",
+          "desc": "다음 행동 요청 (좁은 열, 줄당 16자)."
+        },
+        "bullets": {
+          "type": "list",
+          "minItems": 1,
+          "maxItems": 4,
+          "itemMaxChars": 36,
+          "itemMaxLines": 1,
+          "itemPerLine": 22,
+          "required": true,
+          "default": [
+            "도입 가능성이 있는 기존 고객사",
+            "신규 검토 중인 팀 (리스트 별도 전달)"
+          ],
+          "desc": "구체적 대상/방법 불릿 1~4개."
+        },
+        "contactLines": {
+          "type": "multiline",
+          "maxChars": 90,
+          "maxLines": 3,
+          "perLine": 30,
+          "required": true,
+          "default": "문의 Northwind Cloud 마케팅팀\n02-000-0000",
+          "desc": "담당자 연락처 1~3줄 (이름/소속/전화). 이메일은 contactEmail에 따로."
+        },
+        "contactEmail": {
+          "type": "text",
+          "maxChars": 40,
+          "maxLines": 1,
+          "perLine": 40,
+          "required": false,
+          "default": "newsletter@example.com",
+          "desc": "담당자 이메일 (mailto 링크가 됨, 없으면 생략)."
+        },
+        "cta": {
+          "type": "text",
+          "maxChars": 36,
+          "maxLines": 1,
+          "perLine": 24,
+          "required": true,
+          "default": "선착순 마감 — 빠른 신청 부탁드립니다",
+          "desc": "검정 필 버튼 문구 — 행동 촉구 한 문장."
+        }
+      }
+    }
+  },
+  "meta": {
+    "docTitle": {
+      "maxChars": 60,
+      "required": true,
+      "default": "Northwind Cloud 파트너 성장 세미나",
+      "desc": "HTML 문서 제목 (이메일 제목 겸용)."
+    }
+  },
+  "brands": {
+    "nimbus": {
+      "icon": "nimbus-icon",
+      "wordmarkCss": "background:linear-gradient(90deg,#3B82F6,#1F5FBF); background-color:#1F5FBF; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#1F5FBF;"
+    },
+    "stratus": {
+      "icon": "stratus-icon",
+      "wordmarkCss": "background:linear-gradient(90deg,#14B8A6,#0F766E); background-color:#0F766E; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#0F766E;"
+    },
+    "cirrus": {
+      "icon": null,
+      "wordmarkCss": "background:linear-gradient(90deg,#F97316,#C2410C); background-color:#C2410C; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#C2410C;"
+    },
+    "none": {
+      "icon": null,
+      "wordmarkCss": "color:#141920;"
+    }
+  },
+  "imageSlots": {
+    "heroBg": {
+      "label": "배경 그라데이션",
+      "default": "hero-general",
+      "presets": {
+        "hero-general": "assets/hero-general.jpg"
+      }
+    },
+    "logo": {
+      "label": "로고",
+      "default": "logo",
+      "presets": {
+        "logo": "assets/logo.png"
+      }
+    },
+    "photo": {
+      "label": "본문 사진",
+      "default": "photo",
+      "presets": {
+        "photo": "assets/photo.jpg"
+      }
+    }
+  },
+  "iconPresets": {
+    "nimbus-icon": "assets/nimbus-icon.png",
+    "stratus-icon": "assets/stratus-icon.png"
+  },
+  "combos": [
+    "모듈은 브리핑에 맞는 것만 3~6개 (hero·footer 포함) — 많이 넣을수록 좋은 게 아니다",
+    "정보 표(qualify)는 표로 만들 데이터가 있을 때만, 사진 소개(about)는 실물이 있는 행사일 때만",
+    "표·스탯처럼 정보 밀도가 높은 모듈을 연달아 붙이지 않는다 (사이에 가볍고 여백 있는 모듈)",
+    "infobar(일시·장소)는 히어로 바로 뒤가 자연스럽다, bignumber도 히어로 뒤 초반부에",
+    "성격이 겹치는 모듈은 하나만 (values vs productCards, agenda vs steps)",
+    "행사 일정이 같은 날 시간순이면 agenda 또는 timeline(vertical, 위→아래), 여러 날·주차·일별이면 timeline(horizontal, 좌→우)"
+  ]
+}

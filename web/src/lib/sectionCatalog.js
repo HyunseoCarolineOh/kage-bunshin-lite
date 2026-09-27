@@ -1,0 +1,21 @@
+/** User-facing names describe the visible form. Spec keys, saved content and flyer headings stay stable. */
+export const SECTION_CATALOG = {
+  hero: { label: "히어로샷", summary: "큰 제목, 소개 한두 줄, 배지가 놓입니다. 형태는 연한 배경(기본·가운데), 다크 배너, 컬러 블록 네 가지입니다.", heading: "" },
+  values: { label: "리스트", summary: "제목과 한 줄 설명 2~4개. 형태는 세로 나열, 3열 카드, 큰 숫자, 틴트 타일 3열.", heading: "참여하면 얻는 가치" },
+  qualify: { label: "표", summary: "이름과 조건 한 줄 아래에 머리글이 있는 표를 놓습니다.", heading: "상세 정보" },
+  about: { label: "사진과 글", summary: "사진 한 장 아래 본문과 점 목록이 옵니다. 로고 옆에 글을 두는 형태도 있습니다.", heading: "소개" },
+  agenda: { label: "시간표", summary: "세션을 순서대로 놓습니다. 형태는 왼쪽 선 타임라인 또는 번호 표.", heading: "행사 일정" },
+  steps: { label: "단계 카드", summary: "1, 2, 3 번호 원이 붙은 카드입니다. 세로로 쌓거나 가로 3칸으로 놓습니다. (이전 형식, 새 문서에서는 카드를 씁니다)", heading: "진행 순서" },
+  timeline: { label: "가로 타임라인", summary: "점과 선으로 이은 항목을 위에서 아래로, 또는 왼쪽에서 오른쪽으로 놓습니다.", heading: "기간별 일정" },
+  stats: { label: "숫자 강조 카드", summary: "큰 숫자와 설명이 든 카드 2열입니다. 도넛이나 막대 그래프를 넣을 수 있습니다. (이전 형식, 새 문서에서는 카드를 씁니다)", heading: "숫자와 그래프" },
+  quotes: { label: "인용 박스", summary: "인용문과 이름이 든 흰 박스를 세로로 쌓습니다.", heading: "후기와 한마디" },
+  infobar: { label: "정보 띠", summary: "일시·장소·대상 칸 2~3개. 검정 한 줄 띠 또는 떠 있는 흰 카드.", heading: "" },
+  productCards: { label: "로고 카드", summary: "로고, 이름, 대상 라벨, 질문형 제목, 해시태그가 든 카드입니다. (이전 형식, 새 문서에서는 카드를 씁니다)", heading: "제품 소개" },
+  bignumber: { label: "큰 숫자", summary: "큰 숫자 한 줄과 굵은 문장 두 줄, 출처 한 줄입니다. (이전 형식, 새 문서에서는 카드의 큰 숫자 배너를 씁니다)", heading: "" },
+  customerStories: { label: "사진 카드 2열", summary: "사진, 제목, 본문, 링크 버튼이 든 카드를 2열로 놓습니다. (이전 형식, 새 문서에서는 카드를 씁니다)", heading: "고객 사례" },
+  card: { label: "카드", summary: "제목과 설명이 든 카드를 1·2·3열, 로고 격자, 큰 숫자 배너로 놓습니다. 사진, 큰 숫자와 그래프, 제품 로고, 라벨, 일시·장소 표, 링크 버튼, 번호, 출처를 붙일 수 있고 묶음을 여러 개 추가할 수 있습니다.", heading: "주요 내용" },
+  logoGrid: { label: "로고 격자", summary: "로고와 이름을 3열 격자로 놓습니다. (이전 형식, 새 문서에서는 카드의 로고 격자를 씁니다)", heading: "로고 모음" },
+  article: { label: "기사 본문", summary: "큰 제목 아래 리드 문단과 소제목·본문 묶음을 세로로 놓습니다. 확인한 원문 단락이 그대로 실립니다.", heading: "주요 소식" },
+  programs: { label: "프로그램 카드", summary: "이름, 한 줄 소개, 본문, 일시·장소·대상 표와 신청 버튼이 든 카드를 세로로 쌓습니다. (이전 형식, 새 문서에서는 카드를 씁니다)", heading: "프로그램 안내" },
+  footer: { label: "마무리", summary: "큰 문장과 신청 안내, 버튼. 형태는 문의처 카드, 다크 배너, 컬러 블록, 항목 표(rows), 문장형(body). 항상 맨 아래입니다.", heading: "" },
+};
