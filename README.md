@@ -26,7 +26,7 @@ is committed; point `THEME=<folder>` at your own theme to rebrand without touchi
 
 1. 원고 입력 → `POST /generate` 한 번. API Gateway 30초 안에 끝낸다.
 2. Bedrock이 스펙 JSON을 도구 호출로 제출한다. 스펙은 `schema.v2.json`의 슬롯 계약(글자수·줄수·형태)을 따른다.
-3. `validateSpec`이 어긴 칸을 찾고, 그 칸만 다시 쓰게 한 번 수선한다.
+3. `validateSpec`이 어긴 칸을 찾고 그 칸만 다시 쓰게 한 번 수선한다.
 4. 브라우저가 스펙 + 테마 템플릿을 조립한다. 글자를 클릭해 고치면 2초 뒤 자동 저장.
 5. 내보내기. HTML 복사(메일 편집기에 붙이기), HTML 내려받기(이미지 data URI 내장).
 
@@ -73,8 +73,8 @@ npm run dev                                    # 미리보기
 
 - 색 변형(`variants`)은 편집기 위쪽의 색 점이 된다. AI는 항상 `defaultVariant`로 뽑고 사용자가 바꾼다.
 - 배경·장식 이미지는 이름 규약을 따른다. `hero-<variant>.jpg`, `hero-deco-<variant>.png`.
-- 제품 브랜드(워드마크 색·아이콘)는 `schema.json → brands`에 두고, 공식 표기는 `theme.mjs → brandLabels`에 적는다. 프롬프트 안내문은 여기서 자동으로 만들어진다.
-- 말투·브랜드 표기 규칙처럼 회사 고유의 지침은 `prompt-style.md`에만 쓴다. `lambda/api/prompt.mjs`는 테마와 무관한 규칙만 가진다.
+- 제품 브랜드(워드마크 색·아이콘)는 `schema.json → brands`에 두고 공식 표기는 `theme.mjs → brandLabels`에 적는다. 프롬프트 안내문은 여기서 자동으로 만들어진다.
+- 말투·브랜드 표기 규칙처럼 회사 고유의 지침은 `prompt-style.md`에만 쓴다. `lambda/api/prompt.mjs`는 테마와 무관한 규칙만 담는다.
 
 ## 실행
 
